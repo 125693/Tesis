@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.mycompany.tesismaven.NuevaVisita2Controller">
+    <children>
+        <Label layoutX="61.0" layoutY="20.0" minHeight="35.0" minWidth="400.0" style="-fx-background-color: #517494;" text="Nueva Visita - Paso 2" textFill="WHITE">
+         <padding>
+            <Insets bottom="5.0" left="10.0" top="5.0" />
+         </padding>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <Label layoutX="95.0" layoutY="71.0" prefHeight="35.0" prefWidth="166.0" text="Reclamos por asignar">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnRegistrar1" layoutX="438.0" layoutY="189.0" onAction="" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #717D7E;" text="Agregar" textFill="WHITE" />
+      <TableView layoutX="67.0" layoutY="106.0" prefHeight="200.0" prefWidth="330.0">
+        <columns>
+          <TableColumn prefWidth="95.0" text="Tipo Falla" />
+          <TableColumn prefWidth="102.0" text="Distrito" />
+            <TableColumn prefWidth="132.0" text="Tiempo de resolucion" />
+        </columns>
+      </TableView>
+      <TableView layoutX="67.0" layoutY="361.0" prefHeight="200.0" prefWidth="330.0">
+         <columns>
+            <TableColumn prefWidth="95.0" text="Tipo Falla" />
+            <TableColumn prefWidth="102.0" text="Distrito" />
+            <TableColumn prefWidth="132.0" text="Tiempo de resolucion" />
+         </columns>
+      </TableView>
+      <Label layoutX="95.0" layoutY="320.0" prefHeight="35.0" prefWidth="166.0" text="Reclamos asignados">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnRegistrar11" layoutX="438.0" layoutY="461.0" onAction="" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #717D7E;" text="FInalizar" textFill="WHITE" />
+   </children>
+</AnchorPane>
