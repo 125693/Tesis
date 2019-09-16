@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.mycompany.tesismaven.ListaReclamosController">
+    <children>
+      <Label layoutX="58.0" layoutY="45.0" minHeight="35.0" minWidth="400.0" prefHeight="35.0" prefWidth="509.0" style="-fx-background-color: #517494;" text="Lista de Reclamos" textFill="WHITE">
+         <padding>
+            <Insets bottom="5.0" left="10.0" top="5.0" />
+         </padding>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <Button layoutX="500.0" layoutY="523.0" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: #A4A4A4;" text="Salir" textFill="WHITE" />
+      <Button layoutX="58.0" layoutY="523.0" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: #A4A4A4;" text="Editar" textFill="WHITE" />
+      <Button layoutX="159.0" layoutY="523.0" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: #A4A4A4;" text="Nuevo" textFill="WHITE" />
+      <TableView fx:id="tableUsers" layoutX="58.0" layoutY="151.0" onMouseClicked="" prefHeight="344.0" prefWidth="509.0">
+        <columns>
+          <TableColumn fx:id="codigoCol" prefWidth="39.0" text="ID" />
+          <TableColumn fx:id="nombreCol" text="Fecha" />
+            <TableColumn fx:id="apellidosCol" prefWidth="111.0" text="Tipo de Producto" />
+            <TableColumn prefWidth="119.0" text="Gama del Producto" />
+            <TableColumn fx:id="telefonoCol" prefWidth="71.0" text="Estado" />
+            <TableColumn fx:id="rolCol" prefWidth="88.0" text="Tipo de Falla" />
+        </columns>
+      </TableView>
+      <TextField layoutX="55.0" layoutY="106.0" prefHeight="25.0" prefWidth="121.0" promptText="Busqueda avanzada" />
+      <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="184.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/glass-mini.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
