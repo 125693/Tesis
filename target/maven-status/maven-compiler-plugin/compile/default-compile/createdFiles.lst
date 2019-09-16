@@ -1,2 +1,7 @@
-com\mycompany\tesismaven\FXMLController.class
+com\mycompany\tesismaven\ListaClientesController.class
 com\mycompany\tesismaven\MainApp.class
+com\mycompany\tesismaven\MenuController.class
+com\mycompany\tesismaven\MainController.class
+com\mycompany\tesismaven\MenuReclamoController.class
+com\mycompany\tesismaven\FXMLController.class
+com\mycompany\tesismaven\WindowIntroController.class

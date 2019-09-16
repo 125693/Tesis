@@ -10,16 +10,22 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
+    private Parent rootNode;
+    
+    @Override
+    public void init() throws Exception {
+       // URL url = getClass().getResource("../views/login.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/Scene.fxml"));
+        rootNode = fxmlLoader.load();
+    }
+    
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Scene.fxml"));
         
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
-        
-        stage.setTitle("JavaFX and Maven");
-        stage.setScene(scene);
+        stage.setTitle("SST");
+        stage.setScene(new Scene(rootNode));
         stage.show();
+
     }
 
     /**
