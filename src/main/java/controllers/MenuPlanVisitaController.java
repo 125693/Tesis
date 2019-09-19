@@ -59,7 +59,11 @@ public class MenuPlanVisitaController implements Initializable {
         this.apWindow=apWindow;
         this.apMenu = apMenu;
         apWindow.getChildren().clear();
-        AnchorPane window = FXMLLoader.load(getClass().getResource("/views/NuevaVisita1.fxml"));
+        FXMLLoader loader = new FXMLLoader ();
+        loader.setLocation(getClass().getResource("/views/NuevaVisita1.fxml"));
+        AnchorPane window = loader.load();
+        NuevaVisita1Controller NV1C = loader.getController();
+        NV1C.setapWindow(this.apWindow,this.apMenu);
         apWindow.getChildren().add(window);
         selected = this.btnNuevo;
         this.btnNuevo.setStyle("-fx-background-color: #729bb3;");
@@ -84,7 +88,11 @@ public class MenuPlanVisitaController implements Initializable {
             if (selected == btnNuevo) return;
             ChangeSelectedButton(btnNuevo,btnListado);
             apWindow.getChildren().clear();
-            AnchorPane window = FXMLLoader.load(getClass().getResource("/views/NuevaVisita1.fxml"));
+            FXMLLoader loader = new FXMLLoader ();
+            loader.setLocation(getClass().getResource("/views/NuevaVisita1.fxml"));
+            AnchorPane window = loader.load();
+            NuevaVisita1Controller NV1C = loader.getController();
+            NV1C.setapWindow(this.apWindow,this.apMenu);
             apWindow.getChildren().add(window);
         } catch (IOException ex) {
             Logger.getLogger(MenuReclamoController.class.getName()).log(Level.SEVERE, null, ex);

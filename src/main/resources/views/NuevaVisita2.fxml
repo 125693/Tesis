@@ -22,7 +22,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegistrar1" layoutX="438.0" layoutY="189.0" onAction="" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #717D7E;" text="Agregar" textFill="WHITE" />
+      <Button fx:id="btnRegistrar1" layoutX="438.0" layoutY="189.0" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #717D7E;" text="Agregar" textFill="WHITE" />
       <TableView layoutX="67.0" layoutY="106.0" prefHeight="200.0" prefWidth="330.0">
         <columns>
           <TableColumn prefWidth="95.0" text="Tipo Falla" />
@@ -42,7 +42,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegistrar11" layoutX="438.0" layoutY="461.0" onAction="" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #717D7E;" text="FInalizar" textFill="WHITE" />
+      <Button fx:id="btnRegistrar11" layoutX="438.0" layoutY="461.0" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #717D7E;" text="FInalizar" textFill="WHITE" />
       <Label layoutX="275.0" layoutY="569.0" text="Horas asignadas :" />
       <Label layoutX="375.0" layoutY="569.0" prefHeight="17.0" prefWidth="21.0" text="00" underline="true" />
    </children>

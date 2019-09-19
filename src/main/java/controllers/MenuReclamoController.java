@@ -60,7 +60,11 @@ public class MenuReclamoController implements Initializable {
         this.apWindow=apWindow;
         this.apMenu=apMenu;
         apWindow.getChildren().clear();
-        AnchorPane window = FXMLLoader.load(getClass().getResource("/views/RegistrarReclamo1.fxml"));
+        FXMLLoader loader = new FXMLLoader ();
+        loader.setLocation(getClass().getResource("/views/RegistrarReclamo1.fxml"));
+        AnchorPane window = loader.load();
+        RegistrarReclamo1Controller RRC = loader.getController();
+        RRC.setapWindow(this.apWindow,this.apMenu);
         apWindow.getChildren().add(window);
         selected = this.btnNuevo;
         this.btnNuevo.setStyle("-fx-background-color: #729bb3;");
@@ -87,30 +91,43 @@ public class MenuReclamoController implements Initializable {
             if (selected == btnListado) return;
             ChangeSelectedButton(btnListado,btnNuevo);
             apWindow.getChildren().clear();
-            AnchorPane window = FXMLLoader.load(getClass().getResource("/views/ListaReclamos.fxml"));
+            FXMLLoader loader = new FXMLLoader ();
+            loader.setLocation(getClass().getResource("/views/ListaReclamos.fxml"));
+            AnchorPane window = loader.load();
+            ListaReclamosController Controller = loader.getController();
+            Controller.setapWindow(this.apWindow,this.apMenu);
             apWindow.getChildren().add(window);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
+            String error = ex.getMessage();
             Logger.getLogger(MenuReclamoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     @FXML
     private void btnNuevoClick(ActionEvent event){  
-        try {
-            if (selected == btnNuevo) return;
-            ChangeSelectedButton(btnNuevo,btnListado);
-            apWindow.getChildren().clear();
-            AnchorPane window = FXMLLoader.load(getClass().getResource("/views/RegistrarReclamo1.fxml"));
-            apWindow.getChildren().add(window);
-        } catch (IOException ex) {
-            Logger.getLogger(MenuReclamoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        nuevo();
     }
 
     private void ChangeSelectedButton(Button newselected, Button oldselected) {
         newselected.setStyle("-fx-background-color: #729bb3;");
         oldselected.setStyle("-fx-background-color: #FDFEFE;");
         selected = newselected;       
+    }
+
+    private void nuevo() {
+        try {
+            if (selected == btnNuevo) return;
+            ChangeSelectedButton(btnNuevo,btnListado);
+            apWindow.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader ();
+            loader.setLocation(getClass().getResource("/views/RegistrarReclamo1.fxml"));
+            AnchorPane window = loader.load();
+            RegistrarReclamo1Controller RRC = loader.getController();
+            RRC.setapWindow(this.apWindow,this.apMenu);
+            apWindow.getChildren().add(window);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuReclamoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
