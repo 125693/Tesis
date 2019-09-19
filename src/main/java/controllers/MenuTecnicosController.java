@@ -41,14 +41,23 @@ public class MenuTecnicosController implements Initializable {
     
     @FXML
     private void btnClickBack(ActionEvent event) throws IOException{  
-        apMenu.getChildren().clear();
-        AnchorPane nuevo = FXMLLoader.load(getClass().getResource("/views/Menu.fxml"));
-        apMenu.getChildren().add(nuevo); 
+        try {
+            apMenu.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader ();
+            loader.setLocation(getClass().getResource("/views/Menu.fxml"));
+            AnchorPane menu = loader.load();
+            MenuController MC = loader.getController();
+            MC.setapWindow(this.apWindow,this.apMenu);
+            apMenu.getChildren().add(menu);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuReclamoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    public void setapWindow(AnchorPane apWindow) throws IOException
+    public void setapWindow(AnchorPane apWindow,AnchorPane apMenu) throws IOException
     {
         this.apWindow=apWindow;
+        this.apMenu = apMenu;
         apWindow.getChildren().clear();
         AnchorPane window = FXMLLoader.load(getClass().getResource("/views/NuevoTecnico.fxml"));
         apWindow.getChildren().add(window);

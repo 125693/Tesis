@@ -47,16 +47,17 @@ public class MenuPlanVisitaController implements Initializable {
             loader.setLocation(getClass().getResource("/views/Menu.fxml"));
             AnchorPane menu = loader.load();
             MenuController MC = loader.getController();
-            MC.setapWindow(this.apWindow);
+            MC.setapWindow(this.apWindow,this.apMenu);
             apMenu.getChildren().add(menu);
         } catch (IOException ex) {
             Logger.getLogger(MenuReclamoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void setapWindow(AnchorPane apWindow) throws IOException
+    public void setapWindow(AnchorPane apWindow,AnchorPane apMenu) throws IOException
     {
         this.apWindow=apWindow;
+        this.apMenu = apMenu;
         apWindow.getChildren().clear();
         AnchorPane window = FXMLLoader.load(getClass().getResource("/views/NuevaVisita1.fxml"));
         apWindow.getChildren().add(window);

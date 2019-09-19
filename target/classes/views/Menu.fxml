@@ -11,11 +11,9 @@
       </Button>
       <Button layoutX="33.0" layoutY="185.0" onAction="#btnClickAlamacen" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FDFEFE;" text="Almacen" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="40.0">
       </Button>
-      <Button layoutX="170.0" layoutY="188.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FDFEFE;" text="Algoritmo" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="180.0" AnchorPane.rightAnchor="40.0">
-      </Button>
       <Button layoutX="34.0" layoutY="318.0" onAction="#btnClickTecnicos" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FDFEFE;" text="Tecnicos" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0">
       </Button>
-      <Button layoutX="168.0" layoutY="321.0" onAction="#btnClickVisitas" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FDFEFE;" text="Visitas" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="40.0">
+      <Button layoutX="180.0" layoutY="180.0" onAction="#btnClickVisitas" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FDFEFE;" text="Visitas" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="180.0" AnchorPane.rightAnchor="40.0">
       </Button>
    </children>
 </AnchorPane>

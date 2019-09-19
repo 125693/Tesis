@@ -24,32 +24,27 @@ public class MainController implements Initializable {
 
     public AnchorPane apMenu, apWindow;
     
-    @FXML
-    void inicia() throws IOException {
+    public void reinicia() throws IOException {
+        apWindow.getChildren().clear();
+        AnchorPane window = FXMLLoader.load(getClass().getResource("/views/WindowIntro.fxml"));
+        apWindow.getChildren().add(window);
+
         apMenu.getChildren().clear();
-        AnchorPane nuevo = FXMLLoader.load(getClass().getResource("/views/Menu.fxml"));
-        apMenu.getChildren().add(nuevo); 
+        FXMLLoader loader = new FXMLLoader ();
+        loader.setLocation(getClass().getResource("/views/Menu.fxml"));
+        AnchorPane menu = loader.load();
+        MenuController MC = loader.getController();
+        MC.setapWindow(this.apWindow,this.apMenu); 
+        apMenu.getChildren().add(menu);
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                        
         try {
-            apWindow.getChildren().clear();
-            AnchorPane window = FXMLLoader.load(getClass().getResource("/views/WindowIntro.fxml"));
-            apWindow.getChildren().add(window);
-            
-            apMenu.getChildren().clear();
-            FXMLLoader loader = new FXMLLoader ();
-            loader.setLocation(getClass().getResource("/views/Menu.fxml"));
-            AnchorPane menu = loader.load();
-            MenuController MC = loader.getController();
-            MC.setapWindow(this.apWindow); 
-            apMenu.getChildren().add(menu);
+            reinicia();
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }    
     
 }

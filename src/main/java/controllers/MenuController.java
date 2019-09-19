@@ -30,9 +30,13 @@ public class MenuController implements Initializable {
     @FXML 
     AnchorPane apWindow;
     
-    public void setapWindow(AnchorPane apWindow) throws IOException
+    @FXML 
+    AnchorPane apMenu;
+    
+    public void setapWindow(AnchorPane apWindow,AnchorPane apMenu) throws IOException
     {
         this.apWindow=apWindow;
+        this.apMenu = apMenu;
         apWindow.getChildren().clear();
         AnchorPane window = FXMLLoader.load(getClass().getResource("/views/WindowIntro.fxml"));
         apWindow.getChildren().add(window);
@@ -41,13 +45,13 @@ public class MenuController implements Initializable {
     @FXML
     void btnClickReclamos(ActionEvent event){
         try {
-            ap1.getChildren().clear();
+            apMenu.getChildren().clear();
             FXMLLoader loader = new FXMLLoader ();
             loader.setLocation(getClass().getResource("/views/MenuReclamo.fxml"));
             AnchorPane menu = loader.load();
             MenuReclamoController MRC = loader.getController();
-            MRC.setapWindow(this.apWindow);
-            ap1.getChildren().add(menu);
+            MRC.setapWindow(this.apWindow,this.apMenu);
+            apMenu.getChildren().add(menu);
         } catch (IOException ex) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,13 +60,13 @@ public class MenuController implements Initializable {
     @FXML
     void btnClickClientes(ActionEvent event) throws IOException{
         try {
-            ap1.getChildren().clear();
+            apMenu.getChildren().clear();
             FXMLLoader loader = new FXMLLoader ();
             loader.setLocation(getClass().getResource("/views/MenuCliente.fxml"));
             AnchorPane menu = loader.load();
             MenuClienteController MCC = loader.getController();
-            MCC.setapWindow(this.apWindow);
-            ap1.getChildren().add(menu);
+            MCC.setapWindow(this.apWindow,this.apMenu);
+            apMenu.getChildren().add(menu);
         } catch (IOException ex) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -77,25 +81,25 @@ public class MenuController implements Initializable {
     
     @FXML
     void btnClickTecnicos(ActionEvent event) throws IOException{
-        ap1.getChildren().clear();
+        apMenu.getChildren().clear();
         FXMLLoader loader = new FXMLLoader ();
         loader.setLocation(getClass().getResource("/views/MenuTecnicos.fxml"));
         AnchorPane menu = loader.load();
         MenuTecnicosController MTC = loader.getController();
-        MTC.setapWindow(this.apWindow);
-        ap1.getChildren().add(menu);
+        MTC.setapWindow(this.apWindow,this.apMenu);
+        apMenu.getChildren().add(menu);
     }
     
     @FXML
     void btnClickVisitas(ActionEvent event){
         try {
-            ap1.getChildren().clear();
+            apMenu.getChildren().clear();
             FXMLLoader loader = new FXMLLoader ();
             loader.setLocation(getClass().getResource("/views/MenuPlanVisita.fxml"));
             AnchorPane menu = loader.load();
             MenuPlanVisitaController MVC = loader.getController();
-            MVC.setapWindow(this.apWindow);
-            ap1.getChildren().add(menu);
+            MVC.setapWindow(this.apWindow,this.apMenu);
+            apMenu.getChildren().add(menu);
         } catch (IOException ex) {
             String error = ex.getMessage();
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
