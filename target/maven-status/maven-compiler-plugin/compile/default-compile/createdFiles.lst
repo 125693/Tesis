@@ -1,15 +1,12 @@
 controllers\RegistrarReclamo1Controller.class
-controllers\ListaReclamosController.class
-controllers\NuevaVisita2Controller.class
-controllers\MenuPlanVisitaController.class
-controllers\MenuTecnicosController.class
-controllers\MainController.class
-controllers\Menu2Controller.class
 controllers\NuevaVisita1Controller.class
+controllers\ListaReclamosController.class
 controllers\NuevoTecnicoController.class
 controllers\WindowIntroController.class
 controllers\FXMLController.class
+controllers\NuevaVisita2Controller.class
 controllers\MenuClienteController.class
+controllers\MenuPlanVisitaController.class
 controllers\ListaClientesController.class
 controllers\RegistrarReclamo2Controller.class
 controllers\MenuReclamoController.class
@@ -18,4 +15,6 @@ controllers\NuevoClienteController.class
 controllers\ListarTecnicosController.class
 controllers\EditarClienteController.class
 controllers\MenuController.class
+controllers\MenuTecnicosController.class
+controllers\MainController.class
 controllers\ListaVisitasController.class
