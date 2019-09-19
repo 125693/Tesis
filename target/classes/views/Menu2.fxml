@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="460.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Menu2Controller">
+    <children>
+      <Button fx:id="btnReclamos" layoutX="30.0" layoutY="40.0" onAction="" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FDFEFE;" text="Reclamos" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="40.0">
+      </Button>
+      <Button layoutX="170.0" layoutY="41.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FDFEFE;" text="Clientes" textAlignment="CENTER" wrapText="true" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="40.0">
+      </Button>
+      <Button layoutX="33.0" layoutY="185.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FDFEFE;" text="Almacen" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="40.0">
+      </Button>
+      <Button fx:id="btnReport" layoutX="170.0" layoutY="188.0" onAction="" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FDFEFE;" text="Algoritmo" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="180.0" AnchorPane.rightAnchor="40.0">
+      </Button>
+      <Button layoutX="34.0" layoutY="318.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FDFEFE;" text="Tecnicos" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="40.0">
+      </Button>
+      <Button layoutX="168.0" layoutY="321.0" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: #FDFEFE;" text="Plan de visita" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="40.0" AnchorPane.rightAnchor="40.0">
+      </Button>
+   </children>
+</AnchorPane>

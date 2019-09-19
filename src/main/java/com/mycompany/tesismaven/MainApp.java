@@ -14,7 +14,6 @@ public class MainApp extends Application {
     
     @Override
     public void init() throws Exception {
-       // URL url = getClass().getResource("../views/login.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/Scene.fxml"));
         rootNode = fxmlLoader.load();
     }

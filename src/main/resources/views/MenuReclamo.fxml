@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="460.0" prefWidth="320.0" style="-fx-background-color: #BFC9CA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.tesismaven.MenuReclamoController">
+<AnchorPane id="AnchorPane" prefHeight="460.0" prefWidth="320.0" style="-fx-background-color: #BFC9CA;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
       <Button fx:id="btnBack" layoutX="180.0" layoutY="51.0" prefHeight="42.0" prefWidth="277.0" style="-fx-background-color: #364d63;" text="Gestión de Reclamos" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>

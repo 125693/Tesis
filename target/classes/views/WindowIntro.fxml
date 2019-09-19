@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="680.0" style="-fx-background-color: #FDFEFE;" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.tesismaven.WindowIntroController">
+<AnchorPane prefHeight="600.0" prefWidth="680.0" style="-fx-background-color: #FDFEFE;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controllers.WindowIntroController">
     <children>
       <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="642.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
          <image>
