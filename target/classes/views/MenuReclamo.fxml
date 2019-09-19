@@ -14,12 +14,12 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnRegisterAirport" layoutY="40.0" prefHeight="40.0" prefWidth="320.0" style="-fx-background-color: #FDFEFE;" text="Lista Reclamos" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+      <Button fx:id="btnListado" layoutY="40.0" onAction="#btnListadoClick" prefHeight="40.0" prefWidth="320.0" style="-fx-background-color: #FDFEFE;" text="Lista Reclamos" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnListAirport" layoutX="170.0" layoutY="41.0" prefHeight="40.0" prefWidth="320.0" style="-fx-background-color: #FDFEFE;" text="Registrar Reclamo" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+      <Button fx:id="btnNuevo" layoutX="170.0" layoutY="41.0" onAction="#btnNuevoClick" prefHeight="40.0" prefWidth="320.0" style="-fx-background-color: #FDFEFE;" text="Registrar Reclamo" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

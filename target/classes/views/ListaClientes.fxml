@@ -27,7 +27,7 @@
       <Button layoutX="500.0" layoutY="523.0" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: #A4A4A4;" text="Salir" textFill="WHITE" />
       <Button layoutX="58.0" layoutY="523.0" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: #A4A4A4;" text="Editar" textFill="WHITE" />
       <Button layoutX="159.0" layoutY="523.0" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: #A4A4A4;" text="Nuevo" textFill="WHITE" />
-      <TableView fx:id="tableUsers" layoutX="58.0" layoutY="151.0" onMouseClicked="" prefHeight="344.0" prefWidth="509.0">
+      <TableView fx:id="tableUsers" layoutX="58.0" layoutY="151.0" prefHeight="344.0" prefWidth="509.0">
         <columns>
           <TableColumn fx:id="codigoCol" prefWidth="82.0" text="DNI" />
           <TableColumn fx:id="nombreCol" text="Nombre" />

@@ -27,18 +27,45 @@ public class MenuController implements Initializable {
     @FXML
     private AnchorPane ap1;
     
+    @FXML 
+    AnchorPane apWindow;
+    
+    public void setapWindow(AnchorPane apWindow) throws IOException
+    {
+        this.apWindow=apWindow;
+        apWindow.getChildren().clear();
+        AnchorPane window = FXMLLoader.load(getClass().getResource("/views/WindowIntro.fxml"));
+        apWindow.getChildren().add(window);
+    }
+    
     @FXML
-    void btnClickReclamos(ActionEvent event) throws IOException{
-        ap1.getChildren().clear();
-        AnchorPane nuevo = FXMLLoader.load(getClass().getResource("/views/MenuReclamo.fxml"));
-        ap1.getChildren().add(nuevo); 
+    void btnClickReclamos(ActionEvent event){
+        try {
+            ap1.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader ();
+            loader.setLocation(getClass().getResource("/views/MenuReclamo.fxml"));
+            AnchorPane menu = loader.load();
+            MenuReclamoController MRC = loader.getController();
+            MRC.setapWindow(this.apWindow);
+            ap1.getChildren().add(menu);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @FXML
     void btnClickClientes(ActionEvent event) throws IOException{
-        ap1.getChildren().clear();
-        AnchorPane nuevo = FXMLLoader.load(getClass().getResource("/views/MenuCliente.fxml"));
-        ap1.getChildren().add(nuevo); 
+        try {
+            ap1.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader ();
+            loader.setLocation(getClass().getResource("/views/MenuCliente.fxml"));
+            AnchorPane menu = loader.load();
+            MenuClienteController MCC = loader.getController();
+            MCC.setapWindow(this.apWindow);
+            ap1.getChildren().add(menu);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @FXML
@@ -51,15 +78,28 @@ public class MenuController implements Initializable {
     @FXML
     void btnClickTecnicos(ActionEvent event) throws IOException{
         ap1.getChildren().clear();
-        AnchorPane nuevo = FXMLLoader.load(getClass().getResource("/views/MenuTecnicos.fxml"));
-        ap1.getChildren().add(nuevo); 
+        FXMLLoader loader = new FXMLLoader ();
+        loader.setLocation(getClass().getResource("/views/MenuTecnicos.fxml"));
+        AnchorPane menu = loader.load();
+        MenuTecnicosController MTC = loader.getController();
+        MTC.setapWindow(this.apWindow);
+        ap1.getChildren().add(menu);
     }
     
     @FXML
-    void btnClickVisitas(ActionEvent event) throws IOException{
-        ap1.getChildren().clear();
-        AnchorPane nuevo = FXMLLoader.load(getClass().getResource("/views/MenuPlanVisita.fxml"));
-        ap1.getChildren().add(nuevo); 
+    void btnClickVisitas(ActionEvent event){
+        try {
+            ap1.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader ();
+            loader.setLocation(getClass().getResource("/views/MenuPlanVisita.fxml"));
+            AnchorPane menu = loader.load();
+            MenuPlanVisitaController MVC = loader.getController();
+            MVC.setapWindow(this.apWindow);
+            ap1.getChildren().add(menu);
+        } catch (IOException ex) {
+            String error = ex.getMessage();
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override

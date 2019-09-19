@@ -34,25 +34,21 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
                         
-        apWindow.getChildren().clear();
-        AnchorPane window = null;
         try {
-            window = FXMLLoader.load(getClass().getResource("/views/WindowIntro.fxml"));
+            apWindow.getChildren().clear();
+            AnchorPane window = FXMLLoader.load(getClass().getResource("/views/WindowIntro.fxml"));
+            apWindow.getChildren().add(window);
+            
+            apMenu.getChildren().clear();
+            FXMLLoader loader = new FXMLLoader ();
+            loader.setLocation(getClass().getResource("/views/Menu.fxml"));
+            AnchorPane menu = loader.load();
+            MenuController MC = loader.getController();
+            MC.setapWindow(this.apWindow); 
+            apMenu.getChildren().add(menu);
         } catch (IOException ex) {
             Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        apWindow.getChildren().add(window);
-        
-        
-        apMenu.getChildren().clear();
-        AnchorPane menu = null;
-        try {
-            menu = FXMLLoader.load(getClass().getResource("/views/Menu.fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (menu != null)
-            apMenu.getChildren().add(menu); 
         
     }    
     

@@ -27,7 +27,7 @@
       <Label layoutX="65.0" layoutY="285.0" text="Ap. Materno" />
       <Label layoutX="333.0" layoutY="188.0" text="DNI" />
       <Label layoutX="334.0" layoutY="233.0" text="Jornada" />
-      <Button fx:id="btnRegistrar" layoutX="357.0" layoutY="484.0" onAction="" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #717D7E;" text="Registrar" textFill="WHITE" />
+      <Button fx:id="btnRegistrar" layoutX="357.0" layoutY="484.0" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #717D7E;" text="Registrar" textFill="WHITE" />
       <Button layoutX="203.0" layoutY="484.0" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #717D7E;" text="Cancelar" textFill="WHITE" />
       <TextField fx:id="txtNombre" layoutX="137.0" layoutY="184.0" />
       <TextField fx:id="txtApPaterno" layoutX="137.0" layoutY="229.0" />

@@ -7,19 +7,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="apMenu" prefHeight="460.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="controllers.MenuPlanVisitaController">
+<AnchorPane fx:id="apMenu" prefHeight="460.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuPlanVisitaController">
     <children>
       <Button fx:id="btnBack" layoutX="180.0" layoutY="51.0" onAction="#btnClickBack" prefHeight="42.0" prefWidth="277.0" style="-fx-background-color: #364d63;" text="Gestión de Plan de Visita" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnRegisterAirport" layoutY="40.0" prefHeight="40.0" prefWidth="320.0" style="-fx-background-color: #FDFEFE;" text="Lista de Visitas" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+      <Button fx:id="btnListado" layoutY="40.0" onAction="#btnListadoClick" prefHeight="40.0" prefWidth="320.0" style="-fx-background-color: #FDFEFE;" text="Lista de Visitas" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnListAirport" layoutX="170.0" layoutY="41.0" prefHeight="40.0" prefWidth="320.0" style="-fx-background-color: #FDFEFE;" text="Nueva Visita" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
+      <Button fx:id="btnNuevo" layoutX="170.0" layoutY="41.0" onAction="#btnNuevoClick" prefHeight="40.0" prefWidth="320.0" style="-fx-background-color: #FDFEFE;" text="Nueva Visita" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="42.0">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
