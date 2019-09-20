@@ -71,9 +71,14 @@ public class MenuClienteController implements Initializable {
             if (selected == btnListado) return;
             ChangeSelectedButton(btnListado,btnNuevo);
             apWindow.getChildren().clear();
-            AnchorPane window = FXMLLoader.load(getClass().getResource("/views/ListaClientes.fxml"));
+            FXMLLoader loader = new FXMLLoader ();
+            loader.setLocation(getClass().getResource("/views/ListaClientes.fxml"));
+            AnchorPane window = loader.load();
+            ListaClientesController Controller = loader.getController();
+            Controller.setapWindow(this.apWindow,this.apMenu);
             apWindow.getChildren().add(window);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
+            String error = ex.getMessage();
             Logger.getLogger(MenuReclamoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

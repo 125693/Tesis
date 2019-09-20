@@ -36,13 +36,15 @@ public class ListaReclamosController implements Initializable {
     }
     
     @FXML
-    private void btnNuevoClick(ActionEvent event){  
-
-    }
-    
-    @FXML
     private void btnEditarClick(ActionEvent event){  
-
+        try {
+            apWindow.getChildren().clear();
+            AnchorPane window = FXMLLoader.load(getClass().getResource("/views/EditarReclamo.fxml"));
+            apWindow.getChildren().add(window);
+        } catch (Exception ex) {
+            String error = ex.getMessage();
+            Logger.getLogger(MenuReclamoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override

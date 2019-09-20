@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ListaClientesController">
     <children>
       <Label layoutX="58.0" layoutY="45.0" minHeight="35.0" minWidth="400.0" style="-fx-background-color: #517494;" text="Lista de Clientes" textFill="WHITE">
          <padding>
@@ -25,8 +25,7 @@
             <Image url="@../images/team.png" />
          </image></ImageView>
       <Button layoutX="500.0" layoutY="523.0" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: #A4A4A4;" text="Salir" textFill="WHITE" />
-      <Button layoutX="58.0" layoutY="523.0" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: #A4A4A4;" text="Editar" textFill="WHITE" />
-      <Button layoutX="159.0" layoutY="523.0" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: #A4A4A4;" text="Nuevo" textFill="WHITE" />
+      <Button fx:id="btnEditar" layoutX="58.0" layoutY="523.0" onAction="#btnEditarClick" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: #A4A4A4;" text="Editar" textFill="WHITE" />
       <TableView fx:id="tableUsers" layoutX="58.0" layoutY="151.0" prefHeight="344.0" prefWidth="509.0">
         <columns>
           <TableColumn fx:id="codigoCol" prefWidth="82.0" text="DNI" />
