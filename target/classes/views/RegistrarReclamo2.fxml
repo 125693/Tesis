@@ -24,8 +24,8 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cboTipoUsuario1" editable="true" layoutX="288.0" layoutY="226.0" prefHeight="25.0" prefWidth="166.0" promptText="Gama del producto" />
-      <ComboBox fx:id="cboTipoUsuario11" editable="true" layoutX="288.0" layoutY="186.0" prefHeight="25.0" prefWidth="166.0" promptText="Tipo de Producto" />
+      <ComboBox fx:id="cboTipoUsuario1" editable="true" layoutX="288.0" layoutY="204.0" prefHeight="25.0" prefWidth="166.0" promptText="Gama del producto" />
+      <ComboBox fx:id="cboTipoUsuario11" editable="true" layoutX="288.0" layoutY="164.0" prefHeight="25.0" prefWidth="166.0" promptText="Tipo de Producto" />
       <ComboBox fx:id="cboTipoUsuario111" editable="true" layoutX="85.0" layoutY="206.0" prefHeight="25.0" prefWidth="166.0" promptText="Tipo de Falla" />
       <TableView layoutX="85.0" layoutY="308.0" prefHeight="200.0" prefWidth="474.0">
         <columns>
@@ -43,5 +43,6 @@
       <Button layoutX="426.0" layoutY="530.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" text="Registrar Reclamo" />
       <TextField layoutX="85.0" layoutY="247.0" prefHeight="25.0" prefWidth="166.0" promptText="Cantidad de productos" />
       <TextField layoutX="85.0" layoutY="166.0" prefHeight="25.0" prefWidth="166.0" promptText="Nombre del Producto" />
+      <ComboBox fx:id="cboTipoUsuario12" editable="true" layoutX="288.0" layoutY="247.0" prefHeight="25.0" prefWidth="166.0" promptText="Color" />
    </children>
 </AnchorPane>

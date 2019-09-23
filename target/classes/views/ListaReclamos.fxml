@@ -33,7 +33,7 @@
         <columns>
           <TreeTableColumn prefWidth="42.0" text="ID" />
           <TreeTableColumn prefWidth="76.0" text="Fecha" />
-            <TreeTableColumn prefWidth="115.0" text="Documento Cliente" />
+            <TreeTableColumn prefWidth="115.0" text="DNI/RUC Cliente" />
             <TreeTableColumn prefWidth="81.0" text="Estado" />
             <TreeTableColumn prefWidth="194.0" text="Informacion Producto">
                <columns>
