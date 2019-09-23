@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -30,27 +31,30 @@
             <Image url="@../images/usuario.png" />
          </image>
       </ImageView>
-      <Label layoutX="308.0" layoutY="242.0" text="Nombre" />
-      <Label layoutX="43.0" layoutY="288.0" text="Ap. Paterno" />
-      <Label layoutX="40.0" layoutY="340.0" text="Ap. Materno" />
-      <Label layoutX="308.0" layoutY="288.0" text="Teléfono" />
-      <Label layoutX="308.0" layoutY="340.0" text="Dirección" />
-      <Button fx:id="btnRegistrar" layoutX="263.0" layoutY="410.0" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #717D7E;" text="Registrar" textFill="WHITE" />
-      <Button layoutX="109.0" layoutY="410.0" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #717D7E;" text="Editar" textFill="WHITE" />
-      <TextField fx:id="txtNombre" layoutX="372.0" layoutY="237.0" />
-      <TextField fx:id="txtApPaterno" layoutX="112.0" layoutY="284.0" />
-      <TextField fx:id="txtApMaterno" layoutX="112.0" layoutY="336.0" />
-      <TextField fx:id="txtDni" layoutX="51.0" layoutY="210.0" promptText="DNI/RUC" />
-      <TextField fx:id="txtTelefono" layoutX="372.0" layoutY="284.0" />
-      <ComboBox fx:id="cboTipoUsuario1" layoutX="376.0" layoutY="336.0" prefHeight="25.0" prefWidth="141.0" />
-      <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="217.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
+      <Label layoutX="308.0" layoutY="254.0" text="Telefono" />
+      <Label layoutX="39.0" layoutY="300.0" text="Ap. Paterno" />
+      <Label layoutX="40.0" layoutY="352.0" text="Dirección" />
+      <Label layoutX="296.0" layoutY="300.0" text="Ap. Materno" />
+      <Label layoutX="308.0" layoutY="352.0" text="Distrito" />
+      <Button fx:id="btnRegistrar" layoutX="263.0" layoutY="422.0" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #717D7E;" text="Registrar" textFill="WHITE" />
+      <Button layoutX="109.0" layoutY="422.0" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #717D7E;" text="Editar" textFill="WHITE" />
+      <TextField fx:id="txtNombre" layoutX="372.0" layoutY="249.0" />
+      <TextField fx:id="txtApPaterno" layoutX="112.0" layoutY="296.0" />
+      <TextField fx:id="txtApMaterno" layoutX="112.0" layoutY="348.0" />
+      <TextField fx:id="txtDni" layoutX="48.0" layoutY="209.0" promptText="DNI/RUC" />
+      <TextField fx:id="txtTelefono" layoutX="372.0" layoutY="296.0" />
+      <ComboBox fx:id="cboTipoUsuario1" layoutX="376.0" layoutY="348.0" prefHeight="25.0" prefWidth="141.0" />
+      <ImageView fitHeight="35.0" fitWidth="31.0" layoutX="214.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/glass-mini.png" />
          </image>
       </ImageView>
-      <Button fx:id="btnAsignar" layoutX="416.0" layoutY="410.0" onAction="#btnAsignarClick" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #717D7E;" text="Asignar" textFill="WHITE" />
+      <Button fx:id="btnAsignar" layoutX="416.0" layoutY="422.0" onAction="#btnAsignarClick" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #717D7E;" text="Asignar" textFill="WHITE" />
       <DatePicker layoutX="295.0" layoutY="102.0" promptText="Fecha Reclamo" />
-      <Label layoutX="51.0" layoutY="254.0" prefHeight="17.0" prefWidth="149.0" text="Solo si es Persona Natural" underline="true" />
       <TextField fx:id="txtDni1" layoutX="94.0" layoutY="102.0" promptText="ID Reclamo Previo" />
+      <RadioButton layoutX="347.0" layoutY="212.0" mnemonicParsing="false" text="Natural" />
+      <RadioButton layoutX="426.0" layoutY="214.0" mnemonicParsing="false" text="Juridica" />
+      <Label layoutX="48.0" layoutY="255.0" text="Nombre" />
+      <TextField fx:id="txtNombre1" layoutX="112.0" layoutY="250.0" />
    </children>
 </AnchorPane>

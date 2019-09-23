@@ -19,29 +19,30 @@
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <Label layoutX="114.0" layoutY="107.0" prefHeight="35.0" prefWidth="166.0" text="Asignar Producto">
+      <Label layoutX="122.0" layoutY="115.0" prefHeight="35.0" prefWidth="166.0" text="Asignar Producto">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="cboTipoUsuario1" editable="true" layoutX="284.0" layoutY="198.0" prefHeight="25.0" prefWidth="166.0" promptText="Gama del producto" />
-      <ComboBox fx:id="cboTipoUsuario11" editable="true" layoutX="284.0" layoutY="158.0" prefHeight="25.0" prefWidth="166.0" promptText="Tipo de Producto" />
-      <ComboBox fx:id="cboTipoUsuario111" editable="true" layoutX="77.0" layoutY="198.0" prefHeight="25.0" prefWidth="166.0" promptText="Tipo de Falla" />
-      <TableView layoutX="85.0" layoutY="308.0" prefHeight="200.0" prefWidth="400.0">
+      <ComboBox fx:id="cboTipoUsuario1" editable="true" layoutX="288.0" layoutY="204.0" prefHeight="25.0" prefWidth="166.0" promptText="Gama del producto" />
+      <ComboBox fx:id="cboTipoUsuario11" editable="true" layoutX="288.0" layoutY="164.0" prefHeight="25.0" prefWidth="166.0" promptText="Tipo de Producto" />
+      <ComboBox fx:id="cboTipoUsuario111" editable="true" layoutX="85.0" layoutY="206.0" prefHeight="25.0" prefWidth="166.0" promptText="Tipo de Falla" />
+      <TableView layoutX="85.0" layoutY="308.0" prefHeight="200.0" prefWidth="474.0">
         <columns>
-          <TableColumn prefWidth="244.0" text="Informacion del Producto">
+            <TableColumn prefWidth="352.0" text="Informacion del Producto">
                <columns>
-                <TableColumn prefWidth="75.0" text="Tipo" />
+                  <TableColumn prefWidth="75.0" text="Nombre" />
+                  <TableColumn prefWidth="75.0" text="Tipo" />
                   <TableColumn prefWidth="75.0" text="Gama" />
                   <TableColumn prefWidth="75.0" text="Cantidad" />
-               </columns>
-            </TableColumn>
-            <TableColumn prefWidth="145.0" text="Tipo de Falla" />
+               </columns></TableColumn>
+            <TableColumn prefWidth="173.0" text="Tipo de Falla" />
         </columns>
       </TableView>
-      <Button layoutX="317.0" layoutY="239.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="75.0" text="Agregar" />
-      <Button layoutX="355.0" layoutY="531.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" text="Registrar Reclamo" />
-      <TextField layoutX="77.0" layoutY="239.0" prefHeight="25.0" prefWidth="166.0" promptText="Cantidad de productos" />
-      <TextField layoutX="77.0" layoutY="158.0" prefHeight="25.0" prefWidth="166.0" promptText="Nombre del Producto" />
+      <Button layoutX="480.0" layoutY="196.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="75.0" text="Agregar" />
+      <Button layoutX="426.0" layoutY="530.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" text="Registrar Reclamo" />
+      <TextField layoutX="85.0" layoutY="247.0" prefHeight="25.0" prefWidth="166.0" promptText="Cantidad de productos" />
+      <TextField layoutX="85.0" layoutY="166.0" prefHeight="25.0" prefWidth="166.0" promptText="Nombre del Producto" />
+      <ComboBox fx:id="cboTipoUsuario12" editable="true" layoutX="288.0" layoutY="247.0" prefHeight="25.0" prefWidth="166.0" promptText="Color" />
    </children>
 </AnchorPane>

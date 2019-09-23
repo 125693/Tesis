@@ -28,7 +28,7 @@
       <Button fx:id="btnEditar" layoutX="58.0" layoutY="523.0" onAction="#btnEditarClick" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: #A4A4A4;" text="Editar" textFill="WHITE" />
       <TableView fx:id="tableUsers" layoutX="58.0" layoutY="151.0" prefHeight="344.0" prefWidth="509.0">
         <columns>
-          <TableColumn fx:id="codigoCol" prefWidth="82.0" text="DNI" />
+          <TableColumn fx:id="codigoCol" prefWidth="82.0" text="DNI/RUC" />
           <TableColumn fx:id="nombreCol" text="Nombre" />
             <TableColumn fx:id="apellidosCol" prefWidth="133.0" text="Apellidos" />
             <TableColumn fx:id="rolCol" prefWidth="94.0" text="Distrito" />
