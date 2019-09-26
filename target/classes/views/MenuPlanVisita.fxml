@@ -32,5 +32,10 @@
             <DropShadow />
          </effect>
       </ImageView>
+      <Button fx:id="btnAlgoritmo" layoutY="120.0" onAction="#btnAlgoritmoClick" prefHeight="40.0" prefWidth="320.0" style="-fx-background-color: #FDFEFE;" text="Algoritmo" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

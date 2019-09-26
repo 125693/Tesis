@@ -2,6 +2,7 @@ controllers\RegistrarReclamo1Controller.class
 controllers\EditarVisitasController.class
 controllers\ListaReclamosController.class
 controllers\NuevaVisita2Controller.class
+controllers\AlgoritmoController.class
 controllers\MenuPlanVisitaController.class
 controllers\MenuTecnicosController.class
 controllers\MainController.class

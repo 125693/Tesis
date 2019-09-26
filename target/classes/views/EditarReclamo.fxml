@@ -25,7 +25,7 @@
       <ComboBox fx:id="cboTipoUsuario1" editable="true" layoutX="284.0" layoutY="199.0" prefHeight="25.0" prefWidth="166.0" promptText="Gama del producto" />
       <ComboBox fx:id="cboTipoUsuario11" editable="true" layoutX="284.0" layoutY="158.0" prefHeight="25.0" prefWidth="166.0" promptText="Tipo de Producto" />
       <ComboBox fx:id="cboTipoUsuario111" editable="true" layoutX="77.0" layoutY="198.0" prefHeight="25.0" prefWidth="166.0" promptText="Tipo de Falla" />
-      <Button layoutX="303.0" layoutY="346.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" text="Editar" />
+      <Button layoutX="303.0" layoutY="346.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" text="Guardar Cambios" />
       <TextField layoutX="77.0" layoutY="239.0" prefHeight="25.0" prefWidth="166.0" promptText="Cantidad de productos" />
       <TextField editable="false" layoutX="77.0" layoutY="158.0" prefHeight="25.0" prefWidth="166.0" promptText="Nombre del Producto" />
       <ComboBox fx:id="cboTipoUsuario12" editable="true" layoutX="284.0" layoutY="239.0" prefHeight="25.0" prefWidth="166.0" promptText="Color" />

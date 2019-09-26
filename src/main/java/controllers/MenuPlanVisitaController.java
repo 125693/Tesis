@@ -40,6 +40,9 @@ public class MenuPlanVisitaController implements Initializable {
     public Button btnNuevo;
     
     @FXML
+    public Button btnAlgoritmo;
+    
+    @FXML
     private void btnClickBack(ActionEvent event){  
         try {
             apMenu.getChildren().clear();
@@ -73,7 +76,7 @@ public class MenuPlanVisitaController implements Initializable {
     private void btnListadoClick(ActionEvent event){  
         try {
             if (selected == btnListado) return;
-            ChangeSelectedButton(btnListado,btnNuevo);
+            ChangeSelectedButton(btnListado);
             apWindow.getChildren().clear();
             AnchorPane window = FXMLLoader.load(getClass().getResource("/views/ListaVisitas.fxml"));
             apWindow.getChildren().add(window);
@@ -86,7 +89,7 @@ public class MenuPlanVisitaController implements Initializable {
     private void btnNuevoClick(ActionEvent event){  
         try {
             if (selected == btnNuevo) return;
-            ChangeSelectedButton(btnNuevo,btnListado);
+            ChangeSelectedButton(btnNuevo);
             apWindow.getChildren().clear();
             FXMLLoader loader = new FXMLLoader ();
             loader.setLocation(getClass().getResource("/views/NuevaVisita1.fxml"));
@@ -99,9 +102,24 @@ public class MenuPlanVisitaController implements Initializable {
         }
     }
 
-    private void ChangeSelectedButton(Button newselected, Button oldselected) {
+    @FXML
+    private void btnAlgoritmoClick(ActionEvent event){  
+        try {
+            if (selected == btnAlgoritmo) return;
+            ChangeSelectedButton(btnAlgoritmo);
+            apWindow.getChildren().clear();
+            AnchorPane window = FXMLLoader.load(getClass().getResource("/views/Algoritmo.fxml"));
+            apWindow.getChildren().add(window);
+        } catch (IOException ex) {
+            Logger.getLogger(MenuReclamoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void ChangeSelectedButton(Button newselected) {
+        btnListado.setStyle("-fx-background-color: #FDFEFE;");
+        btnNuevo.setStyle("-fx-background-color: #FDFEFE;");
+        btnAlgoritmo.setStyle("-fx-background-color: #FDFEFE;");
         newselected.setStyle("-fx-background-color: #729bb3;");
-        oldselected.setStyle("-fx-background-color: #FDFEFE;");
         selected = newselected;       
     }
     
