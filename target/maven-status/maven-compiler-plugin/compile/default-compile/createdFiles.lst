@@ -10,6 +10,7 @@ controllers\NuevaVisita1Controller.class
 controllers\NuevoTecnicoController.class
 controllers\WindowIntroController.class
 controllers\FXMLController.class
+utils\ConnectionUtil.class
 controllers\MenuClienteController.class
 controllers\ListaClientesController.class
 controllers\RegistrarReclamo2Controller.class
