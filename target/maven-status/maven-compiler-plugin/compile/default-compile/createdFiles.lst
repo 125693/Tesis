@@ -8,6 +8,7 @@ controllers\MenuTecnicosController.class
 controllers\MainController.class
 controllers\NuevaVisita1Controller.class
 controllers\NuevoTecnicoController.class
+Class\Usuario.class
 controllers\WindowIntroController.class
 controllers\FXMLController.class
 utils\ConnectionUtil.class
@@ -17,8 +18,10 @@ controllers\RegistrarReclamo2Controller.class
 controllers\MenuReclamoController.class
 com\mycompany\tesismaven\MainApp.class
 controllers\NuevoClienteController.class
+Class\Persona.class
 controllers\EditarReclamoController.class
 controllers\ListarTecnicosController.class
 controllers\EditarClienteController.class
 controllers\MenuController.class
+Class\TipoUsuario.class
 controllers\ListaVisitasController.class

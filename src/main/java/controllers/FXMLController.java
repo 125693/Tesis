@@ -1,5 +1,6 @@
 package controllers;
 
+import Class.Usuario;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -38,9 +40,9 @@ public class FXMLController implements Initializable {
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
     
-    private boolean Credenciales(String email, String password)
+    private Usuario Credenciales(String email, String password)
     {
-        Boolean SuccessLogin = false;
+        Usuario user = null;
         try {
             String encriptMD5=DigestUtils.md5Hex(password);
             
@@ -51,30 +53,39 @@ public class FXMLController implements Initializable {
             resultSet = preparedStatement.executeQuery();
             
             while(resultSet.next()){
-                SuccessLogin = true;
+                user = new Usuario(resultSet.getInt("id"), 
+                        resultSet.getString("email"), 
+                        resultSet.getInt("Persona_id"), 
+                        resultSet.getInt("TipoUsuario_id"));
             }
             
         } catch (Exception ex) {
             Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return SuccessLogin;
+        return user;
     }
     
     @FXML
     void onClickBtnLogin(ActionEvent event) throws IOException {
-        Boolean SuccessLogin = Credenciales(email.getText(), password.getText());
-        if(!SuccessLogin) {
+        Usuario user = Credenciales(email.getText(), password.getText());
+        if(user == null) {
             msg.setText("Credenciales Incorrectas");
             return;
         }
         
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/Main.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
-
+        FXMLLoader loader = new FXMLLoader ();
+        loader.setLocation(getClass().getResource("/views/Main.fxml"));
+         
+        
         Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
+        //stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("SST");
+        Parent root1 = (Parent) loader.load();
         stage.setScene(new Scene(root1));
+        MainController MainController = loader.getController();
+        MainController.setUser(user);
+
+        
         stage.show();
 
         Stage stageOwn = (Stage) BtnIngresar.getScene().getWindow();

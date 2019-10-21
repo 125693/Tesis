@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import Class.Persona;
+import Class.Usuario;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -23,6 +26,19 @@ import javafx.scene.layout.AnchorPane;
 public class MainController implements Initializable {
 
     public AnchorPane apMenu, apWindow;
+    public Usuario user;
+    @FXML
+    Text Usuario;
+    @FXML
+    Text Rol;
+    
+    public void setUser(Usuario user) throws IOException
+    {
+        this.user = user;
+        Persona per = user.getPersona();
+        Usuario.setText(per.getNombres() + " " + per.getApPaterno() + " " + per.getApMaterno());
+        Rol.setText(user.getTipoUsuario().getNombre());
+    }
     
     public void reinicia() throws IOException {
         apWindow.getChildren().clear();

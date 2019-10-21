@@ -13,11 +13,11 @@
             <Image url="@../images/user-menu.png" />
          </image>
       </ImageView>
-      <Text fill="WHITE" layoutX="121.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" textAlignment="CENTER" wrappingWidth="168.33332586288452">
+      <Text fx:id="Usuario" fill="WHITE" layoutX="118.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" textAlignment="CENTER" wrappingWidth="168.33332586288452">
          <font>
             <Font name="System Italic" size="18.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="145.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rol" textAlignment="CENTER" wrappingWidth="114.99999761581421">
+      <Text fx:id="Rol" fill="WHITE" layoutX="145.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rol" textAlignment="CENTER" wrappingWidth="114.99999761581421">
          <font>
             <Font size="14.0" />
          </font></Text>
