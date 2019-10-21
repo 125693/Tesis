@@ -21,6 +21,12 @@
     
     <!-- https://mvnrepository.com/artifact/com.jfoenix/jfoenix -->
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.joyent.util/fast-md5 -->
+        <dependency>
+            <groupId>com.joyent.util</groupId>
+            <artifactId>fast-md5</artifactId>
+            <version>2.7.1</version>
+        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>

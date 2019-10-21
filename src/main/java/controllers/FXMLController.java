@@ -18,12 +18,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.commons.codec.digest.DigestUtils;
 public class FXMLController implements Initializable {
     
     @FXML
     private Button BtnIngresar;
+    @FXML
+    private TextField email;
+    @FXML
+    private PasswordField password;
+    @FXML
+    private Label msg;
     
     Connection con = null;
     PreparedStatement preparedStatement = null;
@@ -31,23 +40,34 @@ public class FXMLController implements Initializable {
     
     private boolean Credenciales(String email, String password)
     {
+        Boolean SuccessLogin = false;
         try {
-            String sql = "SELECT * FROM color";
+            String encriptMD5=DigestUtils.md5Hex(password);
+            
+            String sql = "SELECT * FROM mydb.usuario where email = ? and password = ?";
             preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, encriptMD5); 
             resultSet = preparedStatement.executeQuery();
+            
             while(resultSet.next()){
-                System.out.println(resultSet.getString("Nombre"));
+                SuccessLogin = true;
             }
+            
         } catch (Exception ex) {
             Logger.getLogger(FXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return true;
+        return SuccessLogin;
     }
     
     @FXML
     void onClickBtnLogin(ActionEvent event) throws IOException {
-        System.out.println("aber");
-        Credenciales("user", "password");
+        Boolean SuccessLogin = Credenciales(email.getText(), password.getText());
+        if(!SuccessLogin) {
+            msg.setText("Credenciales Incorrectas");
+            return;
+        }
+        
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/Main.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
 

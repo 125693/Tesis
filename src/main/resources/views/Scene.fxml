@@ -18,14 +18,15 @@
       </ImageView>
       <AnchorPane layoutX="37.0" layoutY="55.0" prefHeight="340.0" prefWidth="302.0" style="-fx-background-color: #99A3A4;">
          <children>
-            <Hyperlink layoutX="87.0" layoutY="262.0" prefHeight="23.0" prefWidth="147.0" text="¿Olvidaste la contraseña?" textFill="WHITE" />
+            <Hyperlink layoutX="91.0" layoutY="281.0" prefHeight="23.0" prefWidth="147.0" text="¿Olvidaste la contraseña?" textFill="WHITE" />
             <Label layoutX="41.0" layoutY="75.0" text="Email" textFill="#170101" />
             <Label layoutX="41.0" layoutY="153.0" text="Password" textFill="#170101" />
-            <TextField layoutX="41.0" layoutY="102.0" prefHeight="25.0" prefWidth="212.0" />
-            <PasswordField layoutX="41.0" layoutY="189.0" prefHeight="25.0" prefWidth="212.0" />
+            <TextField fx:id="email" layoutX="41.0" layoutY="102.0" prefHeight="25.0" prefWidth="212.0" />
+            <PasswordField fx:id="password" layoutX="41.0" layoutY="189.0" prefHeight="25.0" prefWidth="212.0" />
             <Label layoutX="127.0" layoutY="29.0" text="Sign In" textFill="WHITE">
             </Label>
-            <Button fx:id="BtnIngresar" layoutX="115.0" layoutY="227.0" mnemonicParsing="false" onAction="#onClickBtnLogin" prefHeight="35.0" prefWidth="73.0" text="Ingresar" />
+            <Button fx:id="BtnIngresar" layoutX="119.0" layoutY="246.0" mnemonicParsing="false" onAction="#onClickBtnLogin" prefHeight="35.0" prefWidth="73.0" text="Ingresar" />
+            <Label fx:id="msg" layoutX="82.0" layoutY="222.0" prefHeight="17.0" prefWidth="139.0" textFill="#ee0909" />
          </children>
       </AnchorPane>
       <Label layoutX="389.0" layoutY="66.0" prefHeight="41.0" prefWidth="178.0" text="SISTEMA DE SERVICIO TECNICO" textFill="WHITE">
