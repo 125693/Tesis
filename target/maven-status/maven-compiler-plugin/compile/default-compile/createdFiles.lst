@@ -4,6 +4,7 @@ controllers\ListaReclamosController.class
 controllers\NuevaVisita2Controller.class
 controllers\AlgoritmoController.class
 controllers\MenuPlanVisitaController.class
+Class\TipoCliente.class
 controllers\MenuTecnicosController.class
 controllers\MainController.class
 controllers\NuevaVisita1Controller.class
@@ -12,6 +13,7 @@ controllers\NuevoTecnicoController.class
 Class\Usuario.class
 controllers\WindowIntroController.class
 controllers\FXMLController.class
+Class\Cliente.class
 utils\ConnectionUtil.class
 controllers\MenuClienteController.class
 controllers\ListaClientesController.class

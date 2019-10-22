@@ -5,15 +5,30 @@
  */
 package controllers;
 
+import Class.Cliente;
+import Class.Distrito;
+import Class.Persona;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -31,6 +46,20 @@ public class ListaClientesController implements Initializable {
     
     @FXML
     public AnchorPane apWindow;
+    
+    @FXML private TableView<Cliente> tblClientes;
+    @FXML private TableColumn<Cliente, Integer> colId;
+    @FXML private TableColumn<Cliente, String> colNombre;
+    @FXML private TableColumn<Cliente, String> collApellidos;
+    @FXML private TableColumn<Cliente, String> colDistrito;
+    @FXML private TableColumn<Cliente, String> colTelefono;
+    
+    //ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+    List<Cliente> clientes = new ArrayList<>();
+        
+    Connection con = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
     
     public void setapWindow(AnchorPane apWindow,AnchorPane apMenu) throws IOException
     {
@@ -51,7 +80,36 @@ public class ListaClientesController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        try {
+            // TODO
+            con  = utils.ConnectionUtil.conDB();
+            String sql = "SELECT * FROM mydb.cliente";
+            preparedStatement = con.prepareStatement(sql); 
+            resultSet = preparedStatement.executeQuery();
+            
+            while(resultSet.next()){
+                Cliente cliente = new Cliente(resultSet.getInt("id"), 
+                        resultSet.getString("Direccion"), 
+                        resultSet.getInt("Distrito_id"), 
+                        resultSet.getInt("TipoCliente_id"), 
+                        resultSet.getInt("Persona_id"));
+                clientes.add(cliente);
+                
+            };
+            
+            colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+            colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getNombres()));
+            collApellidos.setCellValueFactory(cellData -> new SimpleStringProperty(
+                    cellData.getValue().getPersona().getApPaterno() + " " + cellData.getValue().getPersona().getApMaterno()));
+            colDistrito.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDistrito().getNombre()));
+            colTelefono.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getTelefono()));
+           
+            tblClientes.getItems().setAll(clientes);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(ListaClientesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }    
     
 }

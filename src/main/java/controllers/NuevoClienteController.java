@@ -94,9 +94,8 @@ public class NuevoClienteController implements Initializable {
     @FXML
     void cboDistritoAction(ActionEvent event){
         index = cboDistrito.getSelectionModel().getSelectedIndex();
-        System.out.println(index);
         String dist = distritos.get(index).getNombre();
-        System.out.println(dist);
+        index++;
     }
     
     @FXML

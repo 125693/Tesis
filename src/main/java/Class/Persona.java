@@ -12,7 +12,7 @@ package Class;
 public class Persona {
 
     int id;
-    String Nombres,ApPaterno,ApMaterno,Telefono;
+    public String Nombres,ApPaterno,ApMaterno,Telefono;
     
     public Persona(int id, String Nombres, String ApPaterno, String ApMaterno, String Telefono) {
         this.id = id;
