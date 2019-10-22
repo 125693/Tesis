@@ -24,7 +24,6 @@
          <image>
             <Image url="@../images/team.png" />
          </image></ImageView>
-      <Button layoutX="500.0" layoutY="523.0" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: #A4A4A4;" text="Salir" textFill="WHITE" />
       <Button fx:id="btnEditar" layoutX="58.0" layoutY="523.0" onAction="#btnEditarClick" prefHeight="29.0" prefWidth="71.0" style="-fx-background-color: #A4A4A4;" text="Editar" textFill="WHITE" />
       <TableView fx:id="tblClientes" layoutX="58.0" layoutY="151.0" prefHeight="344.0" prefWidth="509.0">
         <columns>

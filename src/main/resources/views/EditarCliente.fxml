@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EditarClienteController">
     <children>
       <Label layoutX="113.0" layoutY="95.0" prefHeight="35.0" prefWidth="166.0" text="Editar Cliente">
          <font>
@@ -32,13 +32,13 @@
       <Button layoutX="204.0" layoutY="417.0" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #717D7E;" text="Cancelar" textFill="WHITE" />
       <TextField fx:id="txtNombre" layoutX="137.0" layoutY="228.0" />
       <TextField fx:id="txtApPaterno" layoutX="137.0" layoutY="273.0" />
-      <TextField fx:id="txtApMaterno" layoutX="137.0" layoutY="325.0" />
-      <TextField fx:id="txtDni" layoutX="396.0" layoutY="228.0" />
-      <TextField fx:id="txtTelefono" layoutX="396.0" layoutY="273.0" />
-      <ComboBox fx:id="cboTipoUsuario1" layoutX="396.0" layoutY="325.0" prefHeight="25.0" prefWidth="149.0" />
+      <TextField fx:id="txtDireccion" layoutX="137.0" layoutY="325.0" />
+      <TextField fx:id="txtTelefono" layoutX="396.0" layoutY="228.0" />
+      <TextField fx:id="txtApMaterno" layoutX="396.0" layoutY="273.0" />
+      <ComboBox fx:id="cboDistrito" layoutX="396.0" layoutY="325.0" prefHeight="25.0" prefWidth="149.0" />
       <Label layoutX="65.0" layoutY="182.0" text="DNI/RUC" />
-      <TextField fx:id="txtDni1" layoutX="137.0" layoutY="178.0" />
-      <RadioButton layoutX="354.0" layoutY="181.0" mnemonicParsing="false" text="Natural" />
-      <RadioButton layoutX="433.0" layoutY="183.0" mnemonicParsing="false" text="Juridica" />
+      <TextField fx:id="txtId" layoutX="137.0" layoutY="178.0" />
+      <RadioButton fx:id="rbntNatural" layoutX="354.0" layoutY="181.0" mnemonicParsing="false" onAction="#rbntNaturalClick" text="Natural" />
+      <RadioButton fx:id="rbtnJuridica" layoutX="433.0" layoutY="183.0" mnemonicParsing="false" onAction="#rbtnJuridicaClick" text="Juridica" />
    </children>
 </AnchorPane>

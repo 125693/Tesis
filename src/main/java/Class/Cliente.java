@@ -25,7 +25,7 @@ public class Cliente {
     int id;
     String Direccion;
     int Distrito_id;
-    int TipoCliente_id;
+    public int TipoCliente_id;
     int Persona_id;
     
     Distrito distrito;

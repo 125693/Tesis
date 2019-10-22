@@ -32,6 +32,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -71,10 +72,20 @@ public class ListaClientesController implements Initializable {
     }
     
     @FXML
-    private void btnEditarClick(ActionEvent event){  
+    private void btnEditarClick(ActionEvent event){
+        Cliente c = tblClientes.getSelectionModel().getSelectedItem();
+        if(c == null)
+        {
+            JOptionPane.showMessageDialog(null,"Seleccionar un cliente");
+            return;
+        }
         try {
             apWindow.getChildren().clear();
-            AnchorPane window = FXMLLoader.load(getClass().getResource("/views/EditarCliente.fxml"));
+            FXMLLoader loader = new FXMLLoader ();
+            loader.setLocation(getClass().getResource("/views/EditarCliente.fxml"));
+            AnchorPane window = loader.load();
+            EditarClienteController editarClienteController = loader.getController();
+            editarClienteController.setCliente(c);
             apWindow.getChildren().add(window);
         } catch (IOException ex) {
             Logger.getLogger(MenuReclamoController.class.getName()).log(Level.SEVERE, null, ex);
