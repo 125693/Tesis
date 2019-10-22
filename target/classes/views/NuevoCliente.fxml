@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NuevoClienteController">
     <children>
       <Label layoutX="113.0" layoutY="95.0" prefHeight="35.0" prefWidth="166.0" text="Registrar Cliente">
          <font>
@@ -27,18 +27,18 @@
       <Label layoutX="65.0" layoutY="318.0" text="Dirección" />
       <Label layoutX="330.0" layoutY="221.0" text="Teléfono" />
       <Label layoutX="324.0" layoutY="266.0" text="Ap. Materno" />
-      <Label layoutX="334.0" layoutY="318.0" text="Distrito" />
-      <Button fx:id="btnRegistrar" layoutX="358.0" layoutY="406.0" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #717D7E;" text="Registrar" textFill="WHITE" />
+      <Label fx:id="lblDistrito" layoutX="330.0" layoutY="318.0" prefHeight="17.0" prefWidth="47.0" text="Distrito" />
+      <Button fx:id="btnRegistrar" layoutX="358.0" layoutY="406.0" onAction="#btnRegistrarClick" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #717D7E;" text="Registrar" textFill="WHITE" />
       <Button layoutX="204.0" layoutY="406.0" prefHeight="45.0" prefWidth="75.0" style="-fx-background-color: #717D7E;" text="Cancelar" textFill="WHITE" />
       <TextField fx:id="txtNombre" layoutX="137.0" layoutY="217.0" />
       <TextField fx:id="txtApPaterno" layoutX="137.0" layoutY="262.0" />
-      <TextField fx:id="txtApMaterno" layoutX="137.0" layoutY="314.0" />
-      <TextField fx:id="txtDni" layoutX="393.0" layoutY="217.0" />
-      <TextField fx:id="txtTelefono" layoutX="393.0" layoutY="262.0" />
-      <ComboBox fx:id="cboTipoUsuario1" layoutX="397.0" layoutY="314.0" prefHeight="25.0" prefWidth="141.0" />
-      <RadioButton layoutX="358.0" layoutY="174.0" mnemonicParsing="false" text="Natural" />
-      <RadioButton layoutX="437.0" layoutY="176.0" mnemonicParsing="false" text="Juridica" />
+      <TextField fx:id="txtDireccion" layoutX="137.0" layoutY="314.0" />
+      <TextField fx:id="txtTelefono" layoutX="393.0" layoutY="217.0" />
+      <TextField fx:id="txtApMaterno" layoutX="393.0" layoutY="262.0" />
+      <ComboBox fx:id="cboDistrito" layoutX="396.0" layoutY="314.0" onAction="#cboDistritoAction" prefHeight="25.0" prefWidth="149.0" promptText="Distrito" />
+      <RadioButton fx:id="rbntNatural" layoutX="358.0" layoutY="174.0" mnemonicParsing="false" onAction="#rbntNaturalClick" text="Natural" />
+      <RadioButton fx:id="rbtnJuridica" layoutX="437.0" layoutY="176.0" mnemonicParsing="false" onAction="#rbtnJuridicaClick" text="Juridica" />
       <Label layoutX="66.0" layoutY="176.0" text="DNI/RUC" />
-      <TextField fx:id="txtDni1" layoutX="135.0" layoutY="171.0" />
+      <TextField fx:id="txtId" layoutX="135.0" layoutY="171.0" />
    </children>
 </AnchorPane>

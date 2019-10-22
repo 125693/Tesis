@@ -7,6 +7,7 @@ controllers\MenuPlanVisitaController.class
 controllers\MenuTecnicosController.class
 controllers\MainController.class
 controllers\NuevaVisita1Controller.class
+Class\Distrito.class
 controllers\NuevoTecnicoController.class
 Class\Usuario.class
 controllers\WindowIntroController.class
