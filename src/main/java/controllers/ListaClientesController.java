@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +29,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
@@ -47,6 +49,7 @@ public class ListaClientesController implements Initializable {
     @FXML
     public AnchorPane apWindow;
     
+    @FXML TextField txtId;
     @FXML private TableView<Cliente> tblClientes;
     @FXML private TableColumn<Cliente, Integer> colId;
     @FXML private TableColumn<Cliente, String> colNombre;
@@ -76,6 +79,22 @@ public class ListaClientesController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(MenuReclamoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @FXML
+    private void txtIdAction(ActionEvent event){
+        System.out.println(txtId.getText());
+        if (txtId.getText().equals(""))
+        {
+            tblClientes.getItems().setAll(clientes);
+            return;
+        }
+        List<Cliente> result = new ArrayList<>();
+        clientes.forEach(e -> {
+            if(e.getId() == Integer.parseInt(txtId.getText()))
+                result.add(e);
+        });
+        tblClientes.getItems().setAll(result);
     }
     
     @Override

@@ -31,11 +31,6 @@ public class Cliente {
     Distrito distrito;
     TipoCliente tipoCliente;
     public Persona persona;
-
-    String personaNombres;
-    String personaApellidos;
-    String distritoNombre;
-    String personaTelefono;
     
     public Cliente(int id, String Direccion, int Distrito_id, int TipoCliente_id, int Persona_id) {
         try {
@@ -82,22 +77,6 @@ public class Cliente {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }
-
-    public String getPersonaNombres() {
-        return persona.getNombres();
-    }
-
-    public String getPersonaApellidos() {
-        return personaApellidos;
-    }
-
-    public String getDistritoNombre() {
-        return distritoNombre;
-    }
-
-    public String getPersonaTelefono() {
-        return personaTelefono;
     }
 
     public int getId() {
