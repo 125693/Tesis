@@ -9,9 +9,9 @@ package Class;
  *
  * @author flash
  */
-class TipoCliente {
-    int id;
-    String Nombre;
+public class TipoCliente {
+    private int id;
+    private String Nombre;
 
     public TipoCliente(int id, String Nombre) {
         this.id = id;
@@ -33,6 +33,5 @@ class TipoCliente {
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }
-    
     
 }

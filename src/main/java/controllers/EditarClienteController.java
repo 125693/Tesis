@@ -7,11 +7,13 @@ package controllers;
 
 import Class.Cliente;
 import Class.Distrito;
+import Class.TipoCliente;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -22,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -98,11 +101,20 @@ public class EditarClienteController implements Initializable {
             txtApMaterno.setDisable(true);
             rbntNatural.selectedProperty().setValue(false);
         }
-        
         distritos.forEach(e -> {
-            if(e.getId() == (c.getDistrito().getId()-1))
-                    cboDistrito.getSelectionModel().select(e.getId());
+            if (e.getId() == 1)
+                cboDistrito.getSelectionModel().selectFirst();
+            if(c.getDistrito().getId() - e.getId() > 0)
+            {
+                index = c.getDistrito().getId();
+                cboDistrito.getSelectionModel().selectNext();
+            }
         });
+    }
+    
+    @FXML
+    void cboDistritoAction(ActionEvent event){
+        index = cboDistrito.getSelectionModel().getSelectedIndex() + 1;
     }
     
     @FXML
@@ -136,6 +148,68 @@ public class EditarClienteController implements Initializable {
         {
             txtApPaterno.setDisable(false);
             txtApMaterno.setDisable(false);
+        }
+    }
+    
+    @FXML
+    void btnRegistrarAction(ActionEvent event){
+        if(!validations()) return;
+        UpdateCliente();
+    }
+
+    private void UpdateCliente() {
+        try {
+            //update persona
+            String sql = "UPDATE mydb.persona SET id = ?, Nombres = ?, ApPaterno = ?, ApMaterno = ?, Telefono = ? WHERE (id = ?)";
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1,Integer.parseInt(txtId.getText()));
+            preparedStatement.setString(2,txtNombre.getText());
+            preparedStatement.setString(3,txtApPaterno.getText());
+            preparedStatement.setString(4,txtApMaterno.getText());
+            preparedStatement.setString(5,txtTelefono.getText());
+            preparedStatement.setInt(6,cliente.getPersona().getId());
+            preparedStatement.executeUpdate();
+            //update cliente
+            sql = "UPDATE mydb.cliente SET Direccion = ?, Distrito_id = ?, TipoCliente_id = ?, Persona_id = ? WHERE (id = ?)";
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1,txtDireccion.getText());
+            preparedStatement.setInt(2,index);
+            if (rbntNatural.selectedProperty().getValue())
+                preparedStatement.setInt(3,1);
+            else
+                preparedStatement.setInt(3,2);
+            preparedStatement.setInt(4,Integer.parseInt(txtId.getText()));
+            preparedStatement.setInt(5,cliente.getId());
+            preparedStatement.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null,"Cliente Actualizado");
+        } catch (SQLException ex) {
+            Logger.getLogger(EditarClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private boolean validations() {
+        if (txtId.getText()== "" ||
+                txtNombre.getText() == "" ||
+                txtDireccion.getText() == "" ||
+                txtTelefono.getText() == "" ||
+                index == -1)
+        {
+            JOptionPane.showMessageDialog(null,"completar todos los campos");
+            return false;
+        }
+        else
+        {
+            if(rbntNatural.selectedProperty().getValue() && 
+                    (txtApPaterno.getText() == "" || txtApMaterno.getText() == ""))
+            {
+                JOptionPane.showMessageDialog(null,"completar todos los campos");
+                return false; 
+            }
+            else
+            {
+                return true;
+            }
         }
     }
     
