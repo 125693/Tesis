@@ -1,12 +1,14 @@
 controllers\RegistrarReclamo1Controller.class
 controllers\EditarVisitasController.class
 controllers\ListaReclamosController.class
+Class\TipoTurno.class
 controllers\NuevaVisita2Controller.class
 controllers\AlgoritmoController.class
 controllers\MenuPlanVisitaController.class
 Class\TipoCliente.class
 controllers\MenuTecnicosController.class
 controllers\MainController.class
+Class\TipoTecnico.class
 controllers\NuevaVisita1Controller.class
 Class\Distrito.class
 controllers\NuevoTecnicoController.class
@@ -21,6 +23,7 @@ controllers\ListaClientesController.class
 controllers\RegistrarReclamo2Controller.class
 Class\GamaProducto.class
 controllers\MenuReclamoController.class
+Class\Tecnico.class
 com\mycompany\tesismaven\MainApp.class
 controllers\NuevoClienteController.class
 Class\Persona.class

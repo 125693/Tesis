@@ -94,7 +94,6 @@ public class ListaClientesController implements Initializable {
     
     @FXML
     private void txtIdAction(ActionEvent event){
-        System.out.println(txtId.getText());
         if (txtId.getText().equals(""))
         {
             tblClientes.getItems().setAll(clientes);
