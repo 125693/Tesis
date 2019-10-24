@@ -81,7 +81,7 @@ public class NuevoClienteController implements Initializable {
             resultSet = preparedStatement.executeQuery();
             
             while(resultSet.next()){
-                Distrito distrito = new Distrito(resultSet.getInt("id"), resultSet.getString("Nombre").substring(1));
+                Distrito distrito = new Distrito(resultSet.getInt("id"), resultSet.getString("Nombre"));
                 distritos.add(distrito);
                 cboDistrito.getItems().add(distrito.getNombre());
             };

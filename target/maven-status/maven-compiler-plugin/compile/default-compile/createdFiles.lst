@@ -10,6 +10,7 @@ controllers\MainController.class
 controllers\NuevaVisita1Controller.class
 Class\Distrito.class
 controllers\NuevoTecnicoController.class
+Class\TipoProducto.class
 Class\Usuario.class
 controllers\WindowIntroController.class
 controllers\FXMLController.class
@@ -18,6 +19,7 @@ utils\ConnectionUtil.class
 controllers\MenuClienteController.class
 controllers\ListaClientesController.class
 controllers\RegistrarReclamo2Controller.class
+Class\GamaProducto.class
 controllers\MenuReclamoController.class
 com\mycompany\tesismaven\MainApp.class
 controllers\NuevoClienteController.class
