@@ -68,7 +68,7 @@ public class Tecnico {
 
     private void SetTipoTurno(int TipoTurnoId) {
         try {
-            String sql = "SELECT * FROM mydb.tipoturno where id = ?";
+            String sql = "SELECT * FROM tipoturno where id = ?";
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, TipoTurnoId);
             resultSet = preparedStatement.executeQuery();
@@ -86,7 +86,7 @@ public class Tecnico {
 
     private void SetTipoTecnico(int TipoTecnicoId) {
         try {
-            String sql = "SELECT * FROM mydb.tipotecnico where id = ?";
+            String sql = "SELECT * FROM tipotecnico where id = ?";
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, TipoTecnicoId);
             resultSet = preparedStatement.executeQuery();
@@ -102,7 +102,7 @@ public class Tecnico {
 
     private void SetPersonaId(int PersonaId) {
         try {
-            String sql = "SELECT * FROM mydb.persona where id = ?";
+            String sql = "SELECT * FROM persona where id = ?";
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, PersonaId);
             resultSet = preparedStatement.executeQuery();

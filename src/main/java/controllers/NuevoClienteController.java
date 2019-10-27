@@ -76,7 +76,7 @@ public class NuevoClienteController implements Initializable {
             // TODO
             con  = utils.ConnectionUtil.conDB();
             rbntNatural.selectedProperty().setValue(true);
-            String sql = "SELECT * FROM mydb.distrito";
+            String sql = "SELECT * FROM distrito";
             preparedStatement = con.prepareStatement(sql); 
             resultSet = preparedStatement.executeQuery();
             
@@ -121,7 +121,7 @@ public class NuevoClienteController implements Initializable {
             {
                 try {
                     //save in bd en bd
-                    String sql = "INSERT INTO mydb.persona (id, Nombres, ApPaterno, ApMaterno, Telefono) VALUES (?,?, ?, ?, ?)";
+                    String sql = "INSERT INTO persona (id, Nombres, ApPaterno, ApMaterno, Telefono) VALUES (?,?, ?, ?, ?)";
                     preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                     preparedStatement.setInt(1,Integer.parseInt(txtId.getText()));
                     preparedStatement.setString(2,txtNombre.getText());
@@ -130,7 +130,7 @@ public class NuevoClienteController implements Initializable {
                     preparedStatement.setString(5,txtTelefono.getText());
                     preparedStatement.executeUpdate();
                     
-                    sql = "INSERT INTO mydb.cliente (Direccion, Distrito_id, TipoCliente_id, Persona_id) VALUES (?, ?, ?, ?)";
+                    sql = "INSERT INTO cliente (Direccion, Distrito_id, TipoCliente_id, Persona_id) VALUES (?, ?, ?, ?)";
                     preparedStatement = con.prepareStatement(sql);
                     preparedStatement.setString(1,txtDireccion.getText());
                     preparedStatement.setInt(2,index);

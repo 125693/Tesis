@@ -139,7 +139,7 @@ public class NuevoTecnicoController implements Initializable {
     private void FillCombos() {
         try {
             //gama
-            String sql = "SELECT * FROM mydb.gamaproducto"; 
+            String sql = "SELECT * FROM gamaproducto"; 
             preparedStatement = con.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             
@@ -150,7 +150,7 @@ public class NuevoTecnicoController implements Initializable {
             };
             
             //tipo
-            sql = "SELECT * FROM mydb.tipoproducto"; 
+            sql = "SELECT * FROM tipoproducto"; 
             preparedStatement = con.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             
@@ -188,7 +188,7 @@ public class NuevoTecnicoController implements Initializable {
     private void CreateTecnico() {
         try {
             int personaId = -1;
-            String sql = "INSERT INTO mydb.persona (id, Nombres, ApPaterno, ApMaterno, Telefono) VALUES (?,?, ?, ?, ?)";
+            String sql = "INSERT INTO persona (id, Nombres, ApPaterno, ApMaterno, Telefono) VALUES (?,?, ?, ?, ?)";
             preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setInt(1,Integer.parseInt(txtDni.getText()));
             preparedStatement.setString(2,txtNombre.getText());
@@ -203,7 +203,7 @@ public class NuevoTecnicoController implements Initializable {
                 personaId = resultSet.getInt(1);
             }
             
-            sql = "INSERT INTO mydb.tecnico (TipoTurno_id, TipoTecnico_id, Persona_id) VALUES (?, ?, ?);";
+            sql = "INSERT INTO tecnico (TipoTurno_id, TipoTecnico_id, Persona_id) VALUES (?, ?, ?);";
             preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             if (rbtnMorning.selectedProperty().getValue())
                 preparedStatement.setInt(1,1);
@@ -225,7 +225,7 @@ public class NuevoTecnicoController implements Initializable {
             
             if (rbtnEspecialista.selectedProperty().getValue())
             {
-                sql = "SELECT * FROM mydb.especialidad WHERE TipoProducto_id = ? AND Gama_id = ?";
+                sql = "SELECT * FROM especialidad WHERE TipoProducto_id = ? AND Gama_id = ?";
                 preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setInt(1,indexTipoProducto);
                 preparedStatement.setInt(2,indexGamaProducto);
@@ -237,7 +237,7 @@ public class NuevoTecnicoController implements Initializable {
                 }
                 if(especialidadId == -1)
                 {
-                    sql = "INSERT INTO mydb.especialidad (TipoProducto_id, Gama_id) VALUES (?, ?)";
+                    sql = "INSERT INTO especialidad (TipoProducto_id, Gama_id) VALUES (?, ?)";
                     preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                     preparedStatement.setInt(1,indexTipoProducto);
                     preparedStatement.setInt(2,indexGamaProducto);
@@ -249,7 +249,7 @@ public class NuevoTecnicoController implements Initializable {
                         especialidadId = resultSet.getInt(1);
                     }
                 }
-                sql = "INSERT INTO mydb.tecnico_has_especialidad (especialidadId, tecnicoId) VALUES (?, ?)";
+                sql = "INSERT INTO tecnico_has_especialidad (especialidadId, tecnicoId) VALUES (?, ?)";
                 preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
                 preparedStatement.setInt(1,especialidadId);
                 preparedStatement.setInt(2,tecnicoid);

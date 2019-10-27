@@ -36,7 +36,7 @@ public class Usuario {
             this.Persona_id = Persona_id;
             this.TipoUsuario_id = TipoUsuario_id;
             
-            String sql = "SELECT * FROM mydb.persona where id = ?";
+            String sql = "SELECT * FROM persona where id = ?";
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, Persona_id);
             resultSet = preparedStatement.executeQuery();
@@ -49,7 +49,7 @@ public class Usuario {
                         resultSet.getString("Telefono"));
             }
             
-            sql = "SELECT * FROM mydb.tipousuario where id = ?";
+            sql = "SELECT * FROM tipousuario where id = ?";
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, TipoUsuario_id);
             resultSet = preparedStatement.executeQuery();

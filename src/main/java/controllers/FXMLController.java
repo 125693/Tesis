@@ -46,7 +46,7 @@ public class FXMLController implements Initializable {
         try {
             String encriptMD5=DigestUtils.md5Hex(password);
             
-            String sql = "SELECT * FROM mydb.usuario where email = ? and password = ?";
+            String sql = "SELECT * FROM usuario where email = ? and password = ?";
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setString(1, email);
             preparedStatement.setString(2, encriptMD5); 

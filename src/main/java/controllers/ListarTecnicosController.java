@@ -59,7 +59,7 @@ public class ListarTecnicosController implements Initializable {
 
     private void FillTable() {
         try {
-            String sql = "SELECT * FROM mydb.tecnico"; 
+            String sql = "SELECT * FROM tecnico"; 
             preparedStatement = con.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             

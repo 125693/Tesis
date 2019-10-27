@@ -40,7 +40,7 @@ public class Cliente {
             this.TipoCliente_id = TipoCliente_id;
             this.Persona_id = Persona_id;
             
-            String sql = "SELECT * FROM mydb.distrito where id = ?";
+            String sql = "SELECT * FROM distrito where id = ?";
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, Distrito_id);
             resultSet = preparedStatement.executeQuery();
@@ -50,7 +50,7 @@ public class Cliente {
                         resultSet.getString("Nombre"));
             }
             
-            sql = "SELECT * FROM mydb.tipocliente where id = ?";
+            sql = "SELECT * FROM tipocliente where id = ?";
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, TipoCliente_id);
             resultSet = preparedStatement.executeQuery();
@@ -60,7 +60,7 @@ public class Cliente {
                         resultSet.getString("Nombre"));
             }
             
-            sql = "SELECT * FROM mydb.persona where id = ?";
+            sql = "SELECT * FROM persona where id = ?";
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, Persona_id);
             resultSet = preparedStatement.executeQuery();

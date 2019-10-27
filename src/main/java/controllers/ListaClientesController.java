@@ -112,7 +112,7 @@ public class ListaClientesController implements Initializable {
         try {
             // TODO
             con  = utils.ConnectionUtil.conDB();
-            String sql = "SELECT * FROM mydb.cliente";
+            String sql = "SELECT * FROM cliente";
             preparedStatement = con.prepareStatement(sql); 
             resultSet = preparedStatement.executeQuery();
             

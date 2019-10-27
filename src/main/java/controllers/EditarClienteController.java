@@ -67,7 +67,7 @@ public class EditarClienteController implements Initializable {
             // TODO
             con  = utils.ConnectionUtil.conDB();
             rbntNatural.selectedProperty().setValue(true);
-            String sql = "SELECT * FROM mydb.distrito";
+            String sql = "SELECT * FROM distrito";
             preparedStatement = con.prepareStatement(sql); 
             resultSet = preparedStatement.executeQuery();
             
@@ -160,7 +160,7 @@ public class EditarClienteController implements Initializable {
     private void UpdateCliente() {
         try {
             //update persona
-            String sql = "UPDATE mydb.persona SET id = ?, Nombres = ?, ApPaterno = ?, ApMaterno = ?, Telefono = ? WHERE (id = ?)";
+            String sql = "UPDATE persona SET id = ?, Nombres = ?, ApPaterno = ?, ApMaterno = ?, Telefono = ? WHERE (id = ?)";
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1,Integer.parseInt(txtId.getText()));
             preparedStatement.setString(2,txtNombre.getText());
@@ -170,7 +170,7 @@ public class EditarClienteController implements Initializable {
             preparedStatement.setInt(6,cliente.getPersona().getId());
             preparedStatement.executeUpdate();
             //update cliente
-            sql = "UPDATE mydb.cliente SET Direccion = ?, Distrito_id = ?, TipoCliente_id = ?, Persona_id = ? WHERE (id = ?)";
+            sql = "UPDATE cliente SET Direccion = ?, Distrito_id = ?, TipoCliente_id = ?, Persona_id = ? WHERE (id = ?)";
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setString(1,txtDireccion.getText());
             preparedStatement.setInt(2,index);
