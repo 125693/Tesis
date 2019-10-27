@@ -215,6 +215,48 @@ public class NuevoTecnicoController implements Initializable {
                 preparedStatement.setInt(2,1);
             preparedStatement.setInt(3,personaId);
             preparedStatement.executeUpdate();
+           
+            int tecnicoid = -1;
+            resultSet = preparedStatement.getGeneratedKeys();
+            while(resultSet.next())
+            {
+                tecnicoid = resultSet.getInt(1);
+            }
+            
+            if (rbtnEspecialista.selectedProperty().getValue())
+            {
+                sql = "SELECT * FROM mydb.especialidad WHERE TipoProducto_id = ? AND Gama_id = ?";
+                preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                preparedStatement.setInt(1,indexTipoProducto);
+                preparedStatement.setInt(2,indexGamaProducto);
+                resultSet = preparedStatement.executeQuery();
+                int especialidadId = -1;
+                while(resultSet.next())
+                {
+                    especialidadId = resultSet.getInt("Id");
+                }
+                if(especialidadId == -1)
+                {
+                    sql = "INSERT INTO mydb.especialidad (TipoProducto_id, Gama_id) VALUES (?, ?)";
+                    preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    preparedStatement.setInt(1,indexTipoProducto);
+                    preparedStatement.setInt(2,indexGamaProducto);
+                    preparedStatement.executeUpdate();
+                    resultSet = preparedStatement.getGeneratedKeys();
+
+                    while(resultSet.next())
+                    {
+                        especialidadId = resultSet.getInt(1);
+                    }
+                }
+                sql = "INSERT INTO mydb.tecnico_has_especialidad (especialidadId, tecnicoId) VALUES (?, ?)";
+                preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                preparedStatement.setInt(1,especialidadId);
+                preparedStatement.setInt(2,tecnicoid);
+                preparedStatement.executeUpdate();
+            }
+            
+            
             
             JOptionPane.showMessageDialog(null,"Tecnico creado");
         } catch (SQLException ex) {
