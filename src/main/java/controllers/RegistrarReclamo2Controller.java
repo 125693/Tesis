@@ -6,6 +6,7 @@
 package controllers;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 
@@ -23,5 +24,10 @@ public class RegistrarReclamo2Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    void setData(int clienteId, LocalDate value, String text) {
+        System.out.println(clienteId);
+        System.out.println(value);
+    }
     
 }

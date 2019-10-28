@@ -109,16 +109,16 @@ public class RegistrarReclamo1Controller implements Initializable {
                 }
                 else
                 {
-                    apWindow.getChildren().clear();
-                    AnchorPane window = FXMLLoader.load(getClass().getResource("/views/RegistrarReclamo2.fxml"));
-                    apWindow.getChildren().add(window);
 //                    apWindow.getChildren().clear();
-//                    FXMLLoader loader = new FXMLLoader ();
-//                    loader.setLocation(getClass().getResource("/views/RegistrarReclamo2.fxml"));
-//                    AnchorPane window = loader.load();
-//                    RegistrarReclamo2Controller controller = loader.getController();
-//                    controller.setData(clienteId,dpFecha.getValue(),txtReclamo.getText());
+//                    AnchorPane window = FXMLLoader.load(getClass().getResource("/views/RegistrarReclamo2.fxml"));
 //                    apWindow.getChildren().add(window);
+                    apWindow.getChildren().clear();
+                    FXMLLoader loader = new FXMLLoader ();
+                    loader.setLocation(getClass().getResource("/views/RegistrarReclamo2.fxml"));
+                    AnchorPane window = loader.load();
+                    RegistrarReclamo2Controller controller = loader.getController();
+                    controller.setData(clienteId,dpFecha.getValue(),txtReclamo.getText());
+                    apWindow.getChildren().add(window);
                 }
             }
         }
