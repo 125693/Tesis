@@ -6,6 +6,7 @@ controllers\NuevaVisita2Controller.class
 controllers\AlgoritmoController.class
 controllers\MenuPlanVisitaController.class
 Class\TipoCliente.class
+Class\Modelo.class
 controllers\MenuTecnicosController.class
 controllers\MainController.class
 Class\TipoTecnico.class
@@ -13,11 +14,13 @@ controllers\NuevaVisita1Controller.class
 Class\Distrito.class
 controllers\NuevoTecnicoController.class
 Class\TipoProducto.class
+Class\TipoFalla.class
 Class\Usuario.class
 controllers\WindowIntroController.class
 controllers\FXMLController.class
 Class\Cliente.class
 utils\ConnectionUtil.class
+Class\Color.class
 controllers\MenuClienteController.class
 controllers\ListaClientesController.class
 controllers\RegistrarReclamo2Controller.class
