@@ -7,13 +7,11 @@ package controllers;
 
 import Class.Cliente;
 import Class.Distrito;
-import Class.TipoCliente;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -189,10 +187,10 @@ public class EditarClienteController implements Initializable {
     }
 
     private boolean validations() {
-        if (txtId.getText()== "" ||
-                txtNombre.getText() == "" ||
-                txtDireccion.getText() == "" ||
-                txtTelefono.getText() == "" ||
+        if ("".equals(txtId.getText()) ||
+                "".equals(txtNombre.getText()) ||
+                "".equals(txtDireccion.getText()) ||
+                "".equals(txtTelefono.getText()) ||
                 index == -1)
         {
             JOptionPane.showMessageDialog(null,"completar todos los campos");
@@ -201,7 +199,7 @@ public class EditarClienteController implements Initializable {
         else
         {
             if(rbntNatural.selectedProperty().getValue() && 
-                    (txtApPaterno.getText() == "" || txtApMaterno.getText() == ""))
+                    ("".equals(txtApPaterno.getText()) || "".equals(txtApMaterno.getText())))
             {
                 JOptionPane.showMessageDialog(null,"completar todos los campos");
                 return false; 

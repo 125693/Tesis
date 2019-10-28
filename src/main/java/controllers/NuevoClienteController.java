@@ -66,7 +66,7 @@ public class NuevoClienteController implements Initializable {
     Connection con = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
-    ArrayList<Distrito> distritos = new ArrayList<Distrito>();
+    ArrayList<Distrito> distritos = new ArrayList<>();
     int index = -1;
      
     
@@ -84,7 +84,7 @@ public class NuevoClienteController implements Initializable {
                 Distrito distrito = new Distrito(resultSet.getInt("id"), resultSet.getString("Nombre"));
                 distritos.add(distrito);
                 cboDistrito.getItems().add(distrito.getNombre());
-            };
+            }
             
         } catch (SQLException ex) {
             Logger.getLogger(NuevoClienteController.class.getName()).log(Level.SEVERE, null, ex);
@@ -100,22 +100,20 @@ public class NuevoClienteController implements Initializable {
     
     @FXML
     void btnRegistrarClick(ActionEvent event){
-        if (txtId.getText()== "" ||
-                txtNombre.getText() == "" ||
-                txtDireccion.getText() == "" ||
-                txtTelefono.getText() == "" ||
+        if ("".equals(txtId.getText()) ||
+                "".equals(txtNombre.getText()) ||
+                "".equals(txtDireccion.getText()) ||
+                "".equals(txtTelefono.getText()) ||
                 index == -1)
         {
             JOptionPane.showMessageDialog(null,"completar todos los campos");
-            return;
         }
         else
         {
             if(rbntNatural.selectedProperty().getValue() && 
-                    (txtApPaterno.getText() == "" || txtApMaterno.getText() == ""))
+                    ("".equals(txtApPaterno.getText()) || "".equals(txtApMaterno.getText())))
             {
                 JOptionPane.showMessageDialog(null,"completar todos los campos");
-                return; 
             }
             else
             {

@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -20,7 +22,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -49,11 +53,21 @@ public class RegistrarReclamo1Controller implements Initializable {
     @FXML
     TextField txtApMaterno;
     @FXML
+    TextField txtReclamo;
+    @FXML
     ComboBox cboDistrito;
     @FXML
     RadioButton rbntNatural;
     @FXML
     RadioButton rbtnJuridica;
+    @FXML
+    DatePicker dpFecha;
+    @FXML
+    Button btnAsignar;
+    @FXML
+    Button btnRegistrar;
+    @FXML
+    Button btnEditar;
     
     @FXML
     public AnchorPane apMenu;
@@ -66,7 +80,8 @@ public class RegistrarReclamo1Controller implements Initializable {
     ResultSet resultSet = null;
     ArrayList<Distrito> distritos = new ArrayList<Distrito>();
     int index = -1;
-    
+    int clienteId = -1;
+
     public void setapWindow(AnchorPane apWindow,AnchorPane apMenu) throws IOException
     {
         this.apWindow=apWindow;
@@ -74,41 +89,125 @@ public class RegistrarReclamo1Controller implements Initializable {
     }
     
     @FXML
-    private void btnAsignarClick(ActionEvent event){  
-        try {
-            apWindow.getChildren().clear();
-            AnchorPane window = FXMLLoader.load(getClass().getResource("/views/RegistrarReclamo2.fxml"));
-            apWindow.getChildren().add(window);
-        } catch (IOException ex) {
-            Logger.getLogger(MenuReclamoController.class.getName()).log(Level.SEVERE, null, ex);
+    private void btnAsignarClick(ActionEvent event){
+        try
+        {
+            if ("".equals(txtId.getText()) ||
+                    "".equals(txtNombre.getText()) ||
+                    "".equals(txtDireccion.getText()) ||
+                    "".equals(txtTelefono.getText()) ||
+                index == -1 || dpFecha.getValue() == null)
+            {
+                JOptionPane.showMessageDialog(null,"completar todos los campos");
+            }
+            else
+            {
+                if(rbntNatural.selectedProperty().getValue() && 
+                        ("".equals(txtApPaterno.getText()) || "".equals(txtApMaterno.getText())))
+                {
+                    JOptionPane.showMessageDialog(null,"completar todos los campos");
+                }
+                else
+                {
+                    apWindow.getChildren().clear();
+                    AnchorPane window = FXMLLoader.load(getClass().getResource("/views/RegistrarReclamo2.fxml"));
+                    apWindow.getChildren().add(window);
+//                    apWindow.getChildren().clear();
+//                    FXMLLoader loader = new FXMLLoader ();
+//                    loader.setLocation(getClass().getResource("/views/RegistrarReclamo2.fxml"));
+//                    AnchorPane window = loader.load();
+//                    RegistrarReclamo2Controller controller = loader.getController();
+//                    controller.setData(clienteId,dpFecha.getValue(),txtReclamo.getText());
+//                    apWindow.getChildren().add(window);
+                }
+            }
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(RegistrarReclamo1Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
     @FXML
+    private void btnRegistrarClick(ActionEvent event){  
+        if(!validations()) return;
+        SaveCliente();
+        btnEditar.setDisable(true);
+        btnRegistrar.setDisable(true);
+        btnAsignar.setDisable(false);
+    }
+    
+    @FXML
+    private void btnEditarClick(ActionEvent event){  
+        if(!validations()) return;
+        UpdateCliente();
+        btnEditar.setDisable(true);
+    }
+    
+    @FXML
     private void searchAction(ActionEvent event){  
+        
         try {
-            String sql = "SELECT * FROM persona WHERE id = ?";
+            String sql = "SELECT * FROM cliente WHERE Persona_id = ?";
+            preparedStatement = con.prepareStatement(sql); 
+            preparedStatement.setInt(1,Integer.parseInt(txtId.getText()));
+            resultSet = preparedStatement.executeQuery();
+            int distritoId = -1;
+            int tipoClienteId = -1;
+            
+            while(resultSet.next()){
+                clienteId = resultSet.getInt("id");
+                distritoId = resultSet.getInt("Distrito_id");
+                tipoClienteId = resultSet.getInt("TipoCliente_id");
+                txtDireccion.setText(resultSet.getString("Direccion"));
+            }
+            
+            if(clienteId == -1)
+            {
+                JOptionPane.showMessageDialog(null,"Cliente no registrado");
+                return;
+            }
+            
+            sql = "SELECT * FROM persona WHERE id = ?";
             preparedStatement = con.prepareStatement(sql); 
             preparedStatement.setInt(1,Integer.parseInt(txtId.getText()));
             resultSet = preparedStatement.executeQuery();
             
-            boolean found = false;
             while(resultSet.next()){
-                found = true;
                 txtNombre.setText(resultSet.getString("Nombres"));
                 txtApMaterno.setText(resultSet.getString("ApMaterno"));
                 txtApPaterno.setText(resultSet.getString("ApPaterno"));
                 txtTelefono.setText(resultSet.getString("Telefono"));
-            };
-            if (found)
+            }
+            
+            final int disId = distritoId;
+            distritos.forEach(e -> {
+                if (e.getId() == 1)
+                    cboDistrito.getSelectionModel().selectFirst();
+                if(disId - e.getId() > 0)
+                {
+                    index = disId;
+                    cboDistrito.getSelectionModel().selectNext();
+                }
+            });
+            
+            if(tipoClienteId == 1)
             {
-                sql = "SELECT * FROM cliente WHERE Persona_id = ?";
-                preparedStatement = con.prepareStatement(sql); 
-                preparedStatement.setInt(1,Integer.parseInt(txtId.getText()));
-                resultSet = preparedStatement.executeQuery();
+                rbntNatural.selectedProperty().setValue(true);
+                rbtnJuridica.selectedProperty().setValue(false);
             }
             else
-                JOptionPane.showMessageDialog(null,"no found");
+            {
+                rbtnJuridica.selectedProperty().setValue(true);
+                txtApPaterno.setDisable(true);
+                txtApMaterno.setDisable(true);
+                rbntNatural.selectedProperty().setValue(false);
+            }
+            btnEditar.disableProperty().set(false);
+            btnAsignar.disableProperty().set(false);
+            btnRegistrar.disableProperty().set(true);
+            txtId.setDisable(true);
+                
         } catch (SQLException ex) {
             Logger.getLogger(RegistrarReclamo1Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -119,7 +218,10 @@ public class RegistrarReclamo1Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         con  = utils.ConnectionUtil.conDB();
+        btnEditar.disableProperty().set(true);
+        btnAsignar.disableProperty().set(true);
         rbntNatural.selectedProperty().setValue(true);
+        dpFecha.setValue(LocalDate.now());
         FillComboDistritos();
     }    
 
@@ -133,7 +235,7 @@ public class RegistrarReclamo1Controller implements Initializable {
                 Distrito distrito = new Distrito(resultSet.getInt("id"), resultSet.getString("Nombre"));
                 distritos.add(distrito);
                 cboDistrito.getItems().add(distrito.getNombre());
-            };
+            }
         } catch (SQLException ex) {
             Logger.getLogger(RegistrarReclamo1Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -177,7 +279,93 @@ public class RegistrarReclamo1Controller implements Initializable {
     @FXML
     void cboDistritoAction(ActionEvent event){
         index = cboDistrito.getSelectionModel().getSelectedIndex();
-        String dist = distritos.get(index).getNombre();
         index++;
+    }
+    
+    private void UpdateCliente() {
+        try {
+            //update persona
+            String sql = "UPDATE persona SET id = ?, Nombres = ?, ApPaterno = ?, ApMaterno = ?, Telefono = ? WHERE (id = ?)";
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setInt(1,Integer.parseInt(txtId.getText()));
+            preparedStatement.setString(2,txtNombre.getText());
+            preparedStatement.setString(3,txtApPaterno.getText());
+            preparedStatement.setString(4,txtApMaterno.getText());
+            preparedStatement.setString(5,txtTelefono.getText());
+            preparedStatement.setInt(6,Integer.parseInt(txtId.getText()));
+            preparedStatement.executeUpdate();
+            //update cliente
+            sql = "UPDATE cliente SET Direccion = ?, Distrito_id = ?, TipoCliente_id = ?, Persona_id = ? WHERE (id = ?)";
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1,txtDireccion.getText());
+            preparedStatement.setInt(2,index);
+            if (rbntNatural.selectedProperty().getValue())
+                preparedStatement.setInt(3,1);
+            else
+                preparedStatement.setInt(3,2);
+            preparedStatement.setInt(4,Integer.parseInt(txtId.getText()));
+            preparedStatement.setInt(5,clienteId);
+            preparedStatement.executeUpdate();
+            
+            btnEditar.setDisable(true);
+            JOptionPane.showMessageDialog(null,"Cliente Actualizado");
+        } catch (SQLException ex) {
+            Logger.getLogger(EditarClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private boolean validations() {
+        if (index == -1 ||
+                "".equals(txtTelefono.getText()) ||
+                "".equals(txtId.getText()) ||
+                "".equals(txtNombre.getText()) ||
+                "".equals(txtDireccion.getText()))
+        {
+            System.out.println("1");
+            JOptionPane.showMessageDialog(null,"completar todos los campos");
+            return false;
+        }
+        else
+        {
+            if(rbntNatural.selectedProperty().getValue() && 
+                    ("".equals(txtApPaterno.getText()) || "".equals(txtApMaterno.getText())))
+            {
+                System.out.println("2");
+                JOptionPane.showMessageDialog(null,"completar todos los campos");
+                return false; 
+            }
+            else
+            {
+                return true;
+            }
+        }
+    }
+
+    private void SaveCliente() {
+        try {
+            String sql = "INSERT INTO persona (id, Nombres, ApPaterno, ApMaterno, Telefono) VALUES (?,?, ?, ?, ?)";
+            preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1,Integer.parseInt(txtId.getText()));
+            preparedStatement.setString(2,txtNombre.getText());
+            preparedStatement.setString(3,txtApPaterno.getText());
+            preparedStatement.setString(4,txtApMaterno.getText());
+            preparedStatement.setString(5,txtTelefono.getText());
+            preparedStatement.executeUpdate();
+            
+            sql = "INSERT INTO cliente (Direccion, Distrito_id, TipoCliente_id, Persona_id) VALUES (?, ?, ?, ?)";
+            preparedStatement = con.prepareStatement(sql);
+            preparedStatement.setString(1,txtDireccion.getText());
+            preparedStatement.setInt(2,index);
+            if (rbntNatural.selectedProperty().getValue())
+                preparedStatement.setInt(3,1);
+            else
+                preparedStatement.setInt(3,2);
+            preparedStatement.setInt(4,Integer.parseInt(txtId.getText()));
+            preparedStatement.executeUpdate();
+            
+            JOptionPane.showMessageDialog(null,"Cliente creado");
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrarReclamo1Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

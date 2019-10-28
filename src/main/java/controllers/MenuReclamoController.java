@@ -5,8 +5,6 @@
  */
 package controllers;
 
-import java.awt.Color;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,7 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 
 /**
  * FXML Controller class
@@ -97,8 +94,7 @@ public class MenuReclamoController implements Initializable {
             ListaReclamosController Controller = loader.getController();
             Controller.setapWindow(this.apWindow,this.apMenu);
             apWindow.getChildren().add(window);
-        } catch (Exception ex) {
-            String error = ex.getMessage();
+        } catch (IOException ex) {
             Logger.getLogger(MenuReclamoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
