@@ -28,6 +28,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -53,6 +54,8 @@ public class RegistrarReclamo2Controller implements Initializable {
     ComboBox cboColor;
     @FXML
     ComboBox cboModelo;
+    @FXML
+    TextField txtCantidad;
     
     Connection con = null;
     PreparedStatement preparedStatement = null;
@@ -65,9 +68,8 @@ public class RegistrarReclamo2Controller implements Initializable {
     int IndexTipoProducto = -1;
     int IndexModeloProducto = -1;
     int IndexGamaProducto = -1;
-    int TipoFallaIndex = -1;
+    int IndexTipoFalla = -1;
     int IndexColor = -1;
-    int IndexModelo = -1;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -163,22 +165,40 @@ public class RegistrarReclamo2Controller implements Initializable {
     
     @FXML
     private void cboFallaAction(ActionEvent event){  
-
+        IndexTipoFalla = cboFalla.getSelectionModel().getSelectedIndex();
+        IndexTipoFalla++;
     }
     
     @FXML
     private void btnAgregarAction(ActionEvent event){  
-
+        if (!validationProduct()) return;
+        
     }
     
     @FXML
     private void cboColorAction(ActionEvent event){  
- 
+        IndexColor = cboColor.getSelectionModel().getSelectedIndex();
+        IndexColor++;
     }
     
     @FXML
     private void cboModeloAction(ActionEvent event){  
-        
+        IndexModeloProducto = cboModelo.getSelectionModel().getSelectedIndex();
+        IndexModeloProducto++;
+    }
+
+    private boolean validationProduct() {
+        if(IndexColor == -1 ||
+                IndexGamaProducto == -1 ||
+                IndexModeloProducto == -1 ||
+                IndexTipoProducto == -1 ||
+                IndexTipoFalla == -1 ||
+                "".equals(txtCantidad.getText()))
+        {
+            JOptionPane.showMessageDialog(null,"Completar todos los campos");
+            return false;
+        }
+        return true;
     }
     
     
