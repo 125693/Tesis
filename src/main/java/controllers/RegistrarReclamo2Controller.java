@@ -5,8 +5,9 @@
  */
 package controllers;
 
+import Class.Cliente;
 import Class.Color;
-import Class.Distrito;
+import Class.ProductoReclamo;
 import Class.GamaProducto;
 import Class.Modelo;
 import Class.TipoFalla;
@@ -21,13 +22,19 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javax.swing.JOptionPane;
 
 /**
@@ -56,15 +63,29 @@ public class RegistrarReclamo2Controller implements Initializable {
     ComboBox cboModelo;
     @FXML
     TextField txtCantidad;
+    @FXML
+    TextField txtName;
+    @FXML
+    TextArea taComentario;
+  
+    @FXML private TableView<ProductoReclamo> tbllProducto;
+    @FXML private TableColumn<ProductoReclamo, String> colFalla;
+    @FXML private TableColumn<ProductoReclamo, String> colNombre;
+    @FXML private TableColumn<ProductoReclamo, String> colTipo;
+    @FXML private TableColumn<ProductoReclamo, String> colGama;
+    @FXML private TableColumn<ProductoReclamo, Integer> ColCantidad;
     
     Connection con = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
-    ArrayList<TipoProducto> productos = new ArrayList<>();
+    ArrayList<TipoProducto> tipos = new ArrayList<>();
     ArrayList<GamaProducto> gamas = new ArrayList<>();
     ArrayList<TipoFalla> fallas = new ArrayList<>();
     ArrayList<Color> colors = new ArrayList<>();
     ArrayList<Modelo> modelos = new ArrayList<>();
+    ArrayList<ProductoReclamo> productos = new ArrayList<>();
+    ArrayList<TipoFalla> tiposfalla = new ArrayList<>();
+    
     int IndexTipoProducto = -1;
     int IndexModeloProducto = -1;
     int IndexGamaProducto = -1;
@@ -76,6 +97,11 @@ public class RegistrarReclamo2Controller implements Initializable {
         // TODO
         con  = utils.ConnectionUtil.conDB();
         FillCombos();
+        colFalla.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoFalla().getNombre()));
+        colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+        colTipo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoProducto().getNombre()));
+        colGama.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGama().getNombre()));
+        ColCantidad.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCantidad()));
     }    
 
     void setData(int clienteId, LocalDate value, String text) {
@@ -92,7 +118,7 @@ public class RegistrarReclamo2Controller implements Initializable {
             
             while(resultSet.next()){
                 TipoProducto producto = new TipoProducto(resultSet.getInt("id"), resultSet.getString("Nombre"));
-                productos.add(producto);
+                tipos.add(producto);
                 cboTipoProducto.getItems().add(producto.getNombre());
             }
             
@@ -172,13 +198,30 @@ public class RegistrarReclamo2Controller implements Initializable {
     @FXML
     private void btnAgregarAction(ActionEvent event){  
         if (!validationProduct()) return;
+        ProductoReclamo producto = new ProductoReclamo(txtName.getText(), 
+                colors.get(IndexColor-1), 
+                modelos.get(IndexModeloProducto-1), 
+                tipos.get(IndexTipoProducto-1), 
+                gamas.get(IndexGamaProducto-1), 
+                fallas.get(IndexTipoFalla-1),
+                Integer.parseInt(txtCantidad.getText()),
+                taComentario.getText());
+        productos.add(producto);
         
+//        colFalla.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoFalla().getNombre()));
+//        colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNombre()));
+//        colTipo.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoProducto().getNombre()));
+//        colGama.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getGama().getNombre()));
+//        ColCantidad.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getCantidad()));
+        
+        tbllProducto.getItems().setAll(productos);
     }
     
     @FXML
     private void cboColorAction(ActionEvent event){  
         IndexColor = cboColor.getSelectionModel().getSelectedIndex();
         IndexColor++;
+        
     }
     
     @FXML

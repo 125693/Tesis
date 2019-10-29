@@ -1,3 +1,4 @@
+Class\Reclamo.class
 controllers\RegistrarReclamo1Controller.class
 controllers\EditarVisitasController.class
 controllers\ListaReclamosController.class
@@ -13,6 +14,7 @@ Class\TipoTecnico.class
 controllers\NuevaVisita1Controller.class
 Class\Distrito.class
 controllers\NuevoTecnicoController.class
+Class\ProductoReclamo.class
 Class\TipoProducto.class
 Class\TipoFalla.class
 Class\Usuario.class

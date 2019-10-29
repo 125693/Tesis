@@ -29,16 +29,16 @@
       <ComboBox fx:id="cboGama" editable="true" layoutX="408.0" layoutY="138.0" onAction="#cboGamaAction" prefHeight="25.0" prefWidth="145.0" promptText="Gama del producto" />
       <ComboBox fx:id="cboTipoProducto" editable="true" layoutX="58.0" layoutY="138.0" onAction="#cboTipoProductoAction" prefHeight="25.0" prefWidth="145.0" promptText="Tipo de Producto" />
       <ComboBox fx:id="cboFalla" editable="true" layoutX="238.0" layoutY="176.0" onAction="#cboFallaAction" prefHeight="25.0" prefWidth="145.0" promptText="Tipo de Falla" />
-      <TableView layoutX="55.0" layoutY="319.0" prefHeight="200.0" prefWidth="504.0">
+      <TableView fx:id="tbllProducto" layoutX="55.0" layoutY="319.0" prefHeight="200.0" prefWidth="504.0">
         <columns>
-            <TableColumn prefWidth="352.0" text="Informacion del Producto">
+            <TableColumn fx:id="colProducto" prefWidth="352.0" text="Informacion del Producto">
                <columns>
-                  <TableColumn prefWidth="75.0" text="Nombre" />
-                  <TableColumn prefWidth="75.0" text="Tipo" />
-                  <TableColumn prefWidth="75.0" text="Gama" />
-                  <TableColumn prefWidth="75.0" text="Cantidad" />
+                  <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
+                  <TableColumn fx:id="colTipo" prefWidth="75.0" text="Tipo" />
+                  <TableColumn fx:id="colGama" prefWidth="75.0" text="Gama" />
+                  <TableColumn fx:id="ColCantidad" prefWidth="75.0" text="Cantidad" />
                </columns></TableColumn>
-            <TableColumn prefWidth="173.0" text="Tipo de Falla" />
+            <TableColumn fx:id="colFalla" prefWidth="173.0" text="Tipo de Falla" />
         </columns>
       </TableView>
       <Button fx:id="btnAgregar" layoutX="335.0" layoutY="265.0" mnemonicParsing="false" onAction="#btnAgregarAction" prefHeight="45.0" prefWidth="75.0" text="Agregar" />
