@@ -117,7 +117,7 @@ public class RegistrarReclamo1Controller implements Initializable {
                     loader.setLocation(getClass().getResource("/views/RegistrarReclamo2.fxml"));
                     AnchorPane window = loader.load();
                     RegistrarReclamo2Controller controller = loader.getController();
-                    controller.setData(clienteId,dpFecha.getValue(),txtReclamo.getText());
+                    controller.setData(Integer.parseInt(txtId.getText()),dpFecha.getValue(),txtReclamo.getText(),clienteId);
                     apWindow.getChildren().add(window);
                 }
             }

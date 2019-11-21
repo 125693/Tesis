@@ -42,7 +42,7 @@
         </columns>
       </TableView>
       <Button fx:id="btnAgregar" layoutX="335.0" layoutY="265.0" mnemonicParsing="false" onAction="#btnAgregarAction" prefHeight="45.0" prefWidth="75.0" text="Agregar" />
-      <Button layoutX="426.0" layoutY="541.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="129.0" text="Registrar Reclamo" />
+      <Button fx:id="btnRegistrar" layoutX="426.0" layoutY="541.0" mnemonicParsing="false" onAction="#btnRegistrarClick" prefHeight="45.0" prefWidth="129.0" text="Registrar Reclamo" />
       <TextField fx:id="txtCantidad" layoutX="300.0" layoutY="218.0" prefHeight="25.0" prefWidth="145.0" promptText="Cantidad de productos" />
       <TextField fx:id="txtName" layoutX="58.0" layoutY="176.0" prefHeight="25.0" prefWidth="145.0" promptText="Nombre del Producto" />
       <ComboBox fx:id="cboColor" editable="true" layoutX="408.0" layoutY="176.0" onAction="#cboColorAction" prefHeight="25.0" prefWidth="145.0" promptText="Color" />
