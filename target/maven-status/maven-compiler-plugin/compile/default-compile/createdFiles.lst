@@ -8,6 +8,7 @@ controllers\AlgoritmoController.class
 controllers\MenuPlanVisitaController.class
 Class\TipoCliente.class
 Class\Modelo.class
+Class\Estado.class
 controllers\MenuTecnicosController.class
 controllers\MainController.class
 Class\TipoTecnico.class

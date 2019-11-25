@@ -29,16 +29,16 @@
             <Image url="@../images/glass-mini.png" />
          </image>
       </ImageView>
-      <TreeTableView layoutX="58.0" layoutY="150.0" prefHeight="350.0" prefWidth="509.0">
+      <TreeTableView fx:id="tblReclamos" layoutX="58.0" layoutY="150.0" prefHeight="350.0" prefWidth="509.0">
         <columns>
-          <TreeTableColumn prefWidth="42.0" text="ID" />
-          <TreeTableColumn prefWidth="76.0" text="Fecha" />
-            <TreeTableColumn prefWidth="115.0" text="DNI/RUC Cliente" />
-            <TreeTableColumn prefWidth="81.0" text="Estado" />
+          <TreeTableColumn fx:id="colId" prefWidth="42.0" text="ID" />
+          <TreeTableColumn fx:id="colFecha" prefWidth="76.0" text="Fecha" />
+            <TreeTableColumn fx:id="colDoc" prefWidth="115.0" text="DNI/RUC Cliente" />
+            <TreeTableColumn fx:id="colEstado" prefWidth="81.0" text="Estado" />
             <TreeTableColumn prefWidth="194.0" text="Informacion Producto">
                <columns>
-                  <TreeTableColumn prefWidth="97.0" text="Nombre" />
-                  <TreeTableColumn prefWidth="97.0" text="Falla" />
+                  <TreeTableColumn fx:id="colNombre" prefWidth="97.0" text="Nombre" />
+                  <TreeTableColumn fx:id="colFalla" prefWidth="97.0" text="Falla" />
                </columns>
             </TreeTableColumn>
         </columns>
