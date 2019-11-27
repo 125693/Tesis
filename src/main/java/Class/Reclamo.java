@@ -24,24 +24,35 @@ public class Reclamo {
     
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
+    private PreparedStatement preparedStatement2 = null;
+    private ResultSet resultSet2 = null;
+    private PreparedStatement preparedStatement3 = null;
+    private ResultSet resultSet3 = null;
     private Connection con  = utils.ConnectionUtil.conDB();
     
     int id;
-    //int clienteId;
     int reclamoId;
-    //int estadoId;
     Date fecha;
     Cliente cliente;
     Estado estado;
-    List<ProductoReclamo> productos = new ArrayList<>();
-    
+    List<InfoFalla> productos = new ArrayList<>();
+    String NombreProducto;
+    String NombreFalla;
     public Reclamo(){};
+
+    public Reclamo(String NombreProducto, String NombreFalla) {
+        this.NombreProducto = NombreProducto;
+        this.NombreFalla = NombreFalla;
+    }
     
     public Reclamo(int id,int clienteId, int reclamoId, int estadoId, Date fecha) {
         try {
             this.id = id;
             //this.clienteId = clienteId;
             String sql = "";
+            String sql2 = "";
+            String sql3 = "";
+            
             sql = "SELECT * FROM cliente where id = ?";
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, clienteId);
@@ -64,18 +75,52 @@ public class Reclamo {
                 this.estado = new Estado(resultSet.getInt("id"), 
                         resultSet.getString("Nombre"));
             }
-            
+
+            this.fecha = fecha;
+            //info fallas
             sql = "SELECT * FROM reclamo_has_producto where reclamoId = ?";
             preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
             
             while(resultSet.next()){
-                this.estado = new Estado(resultSet.getInt("id"), 
-                        resultSet.getString("Nombre"));
+                
+                InfoFalla infoFalla = new InfoFalla();
+                
+                infoFalla.setEstadoId(resultSet.getInt("estadoId"));
+                
+                sql2 = "SELECT * FROM falla where id = ?";
+                preparedStatement2 = con.prepareStatement(sql2);
+                preparedStatement2.setInt(1, resultSet.getInt("fallaId"));
+                resultSet2 = preparedStatement2.executeQuery();
+                
+                Falla falla = new Falla();
+                while(resultSet2.next()){
+                    falla.setId(resultSet2.getInt("id"));
+                    falla.setTiempoResolucion(resultSet2.getInt("TiempoResolucion"));
+                    falla.setEspecialidad_id(resultSet2.getInt("Especialidad_id"));
+                    sql3 = "SELECT * FROM tipofalla where id = ?";
+                    preparedStatement3 = con.prepareStatement(sql3);
+                    preparedStatement3.setInt(1, resultSet2.getInt("TipoFalla_id"));
+                    resultSet3 = preparedStatement3.executeQuery();
+                    while(resultSet3.next()){
+                        TipoFalla tipofalla = new TipoFalla(resultSet3.getInt("id"),resultSet3.getString("Nombre"));
+                        falla.setTipoFalla(tipofalla);
+                    }
+                }
+                infoFalla.setFalla(falla);
+                
+                sql2 = "SELECT * FROM producto where id = ?";
+                preparedStatement2 = con.prepareStatement(sql2);
+                preparedStatement2.setInt(1, resultSet.getInt("productoId"));
+                resultSet2 = preparedStatement2.executeQuery();
+                
+                while(resultSet2.next()){
+                    infoFalla.setProducto(resultSet2.getString("Nombre"));
+                }
+                productos.add(infoFalla);
             }
             
-            this.fecha = fecha;
             
         } catch (SQLException ex) {
             Logger.getLogger(Reclamo.class.getName()).log(Level.SEVERE, null, ex);
@@ -121,5 +166,26 @@ public class Reclamo {
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
+
+    public List<InfoFalla> getProductos() {
+        return productos;
+    }
+
+    public String getNombreProducto() {
+        return NombreProducto;
+    }
+
+    public void setNombreProducto(String NombreProducto) {
+        this.NombreProducto = NombreProducto;
+    }
+
+    public String getNombreFalla() {
+        return NombreFalla;
+    }
+
+    public void setNombreFalla(String NombreFalla) {
+        this.NombreFalla = NombreFalla;
+    }
+    
     
 }

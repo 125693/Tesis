@@ -6,6 +6,7 @@
 package controllers;
 
 import Class.Cliente;
+import Class.InfoFalla;
 import Class.Reclamo;
 import java.io.IOException;
 import java.net.URL;
@@ -107,6 +108,24 @@ public class ListaReclamosController implements Initializable {
             for (Reclamo r: reclamos) {
                 TreeItem<Reclamo> node = new TreeItem<>(r);
                 rootNode.getChildren().add(node);
+                
+                if (r.getProductos().size() == 1)
+                {
+                    r.setNombreProducto(r.getProductos().get(0).getProducto());
+                    r.setNombreFalla(r.getProductos().get(0).getFalla().getTipoFalla().getNombre());
+                }
+                else
+                {
+                    for (InfoFalla i: r.getProductos())
+                    {
+                        Reclamo rec = new Reclamo(r.getId(),r.getCliente().getId(),r.getReclamoId(),i.getEstadoId(),r.getFecha());
+                        rec.setNombreFalla(i.getFalla().getTipoFalla().getNombre());
+                        rec.setNombreProducto(i.getProducto());
+                        TreeItem<Reclamo> node2 = new TreeItem<>(rec);
+                        node.getChildren().add(node2);
+                    }
+                }
+                
             }
             tblReclamos.setShowRoot(false);
             tblReclamos.setRoot(rootNode);
@@ -114,7 +133,8 @@ public class ListaReclamosController implements Initializable {
             colFecha.setCellValueFactory(new TreeItemPropertyValueFactory<>("fecha"));
             colDoc.setCellValueFactory(cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getValue().getCliente().getPersona().getId())));
             colEstado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getValue().getEstado().getNombre()));
-           
+            colNombre.setCellValueFactory(new TreeItemPropertyValueFactory<>("NombreProducto"));
+            colFalla.setCellValueFactory(new TreeItemPropertyValueFactory<>("NombreFalla"));
         } catch (SQLException ex) {
             Logger.getLogger(ListaClientesController.class.getName()).log(Level.SEVERE, null, ex);
         }

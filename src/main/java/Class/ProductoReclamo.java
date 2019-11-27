@@ -19,6 +19,7 @@ public class ProductoReclamo {
     int cantidad;
     String comentario;
 
+    public ProductoReclamo(){};
     public ProductoReclamo(String Nombre, Color color, Modelo modelo, 
             TipoProducto tipoProducto, GamaProducto gama, TipoFalla tipoFalla, 
             int cantidad, String comentario) {

@@ -12,8 +12,10 @@ Class\Estado.class
 controllers\MenuTecnicosController.class
 controllers\MainController.class
 Class\TipoTecnico.class
+Class\Falla.class
 controllers\NuevaVisita1Controller.class
 Class\Distrito.class
+Class\InfoFalla.class
 controllers\NuevoTecnicoController.class
 Class\ProductoReclamo.class
 Class\TipoProducto.class
