@@ -5,9 +5,11 @@
  */
 package controllers;
 
+import Class.Cliente;
 import Class.InfoFalla;
 import Class.Reclamo;
 import Class.Tecnico;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
@@ -21,13 +23,17 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -141,4 +147,17 @@ public class NuevaVisita2Controller implements Initializable {
 
     }
     
+    @FXML
+    private void btnRegistrarClick(ActionEvent event){
+        TreeItem<Reclamo> r = tblReclamos1.getSelectionModel().getSelectedItem();
+        if(r == null || r.getParent().getParent() != null)
+        {
+            
+            JOptionPane.showMessageDialog(null,"Seleccionar un reclamo");
+            return;
+        }
+        r.getParent().getChildren().remove(r);
+        System.out.println("delete");
+
+    }
 }

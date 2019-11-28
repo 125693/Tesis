@@ -23,7 +23,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegistrar1" layoutX="447.0" layoutY="303.0" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #717D7E;" text="Agregar" textFill="WHITE" />
+      <Button fx:id="btnRegistrar1" layoutX="447.0" layoutY="303.0" onAction="#btnRegistrarClick" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #717D7E;" text="Agregar" textFill="WHITE" />
       <Label layoutX="95.0" layoutY="320.0" prefHeight="35.0" prefWidth="166.0" text="Reclamos asignados">
          <font>
             <Font name="System Bold" size="15.0" />
