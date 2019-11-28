@@ -83,7 +83,6 @@ public class ListarTecnicosController implements Initializable {
         } catch (SQLException ex) {
             Logger.getLogger(ListarTecnicosController.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
     }
     
     @FXML

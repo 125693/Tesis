@@ -6,9 +6,11 @@
 package Class;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,6 +28,7 @@ public class Tecnico {
     TipoTurno tipoTurno;
     TipoTecnico tipoTecnico;
     Persona persona;
+    Date fecha;
 
     public Tecnico(int id, int TipoTurnoId, int TipoTecnicoId, int PersonaId) {
         this.id = id;
@@ -117,6 +120,14 @@ public class Tecnico {
         } catch (SQLException ex) {
             Logger.getLogger(Tecnico.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
     
     
