@@ -28,7 +28,6 @@ public class Tecnico {
     TipoTurno tipoTurno;
     TipoTecnico tipoTecnico;
     Persona persona;
-    Date fecha;
 
     public Tecnico(int id, int TipoTurnoId, int TipoTecnicoId, int PersonaId) {
         this.id = id;
@@ -121,15 +120,4 @@ public class Tecnico {
             Logger.getLogger(Tecnico.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-    
-    
-    
 }

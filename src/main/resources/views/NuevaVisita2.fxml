@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.NuevaVisita2Controller">
     <children>
         <Label layoutX="61.0" layoutY="20.0" minHeight="35.0" minWidth="400.0" prefHeight="35.0" prefWidth="470.0" style="-fx-background-color: #517494;" text="Nueva Visita - Paso 2" textFill="WHITE">
          <padding>
@@ -32,32 +32,32 @@
       <Button fx:id="btnRegistrar11" layoutX="447.0" layoutY="552.0" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #717D7E;" text="FInalizar" textFill="WHITE" />
       <Label layoutX="275.0" layoutY="569.0" text="Horas asignadas :" />
       <Label layoutX="375.0" layoutY="569.0" prefHeight="17.0" prefWidth="21.0" text="00" underline="true" />
-      <TreeTableView layoutX="61.0" layoutY="97.0" prefHeight="200.0" prefWidth="470.0">
+      <TreeTableView fx:id="tblReclamos1" layoutX="61.0" layoutY="97.0" prefHeight="200.0" prefWidth="470.0">
         <columns>
-          <TreeTableColumn prefWidth="41.0" text="ID" />
-          <TreeTableColumn prefWidth="136.0" text="Fecha" />
+          <TreeTableColumn fx:id="colId1" prefWidth="41.0" text="ID" />
+          <TreeTableColumn fx:id="colFecha1" prefWidth="136.0" text="Fecha" />
             <TreeTableColumn prefWidth="292.0" text="Informacion Producto">
                <columns>
-                  <TreeTableColumn prefWidth="122.0" text="Nombre" />
-                  <TreeTableColumn prefWidth="79.0" text="Cantidad" />
-                  <TreeTableColumn prefWidth="91.0" text="Tiempo" />
+                  <TreeTableColumn fx:id="colNombre1" prefWidth="122.0" text="Nombre" />
+                  <TreeTableColumn fx:id="colCantidad1" prefWidth="79.0" text="Cantidad" />
+                  <TreeTableColumn fx:id="colTiempo1" prefWidth="91.0" text="Tiempo" />
                </columns>
             </TreeTableColumn>
         </columns>
       </TreeTableView>
-      <TreeTableView layoutX="61.0" layoutY="348.0" prefHeight="200.0" prefWidth="470.0">
+      <TreeTableView fx:id="tblReclamos2" layoutX="61.0" layoutY="348.0" prefHeight="200.0" prefWidth="470.0">
          <columns>
-            <TreeTableColumn prefWidth="41.0" text="ID" />
-            <TreeTableColumn prefWidth="136.0" text="Fecha" />
+            <TreeTableColumn fx:id="colId2" prefWidth="41.0" text="ID" />
+            <TreeTableColumn fx:id="colFecha2" prefWidth="136.0" text="Fecha" />
             <TreeTableColumn prefWidth="292.0" text="Informacion Producto">
                <columns>
-                  <TreeTableColumn prefWidth="122.0" text="Nombre" />
-                  <TreeTableColumn prefWidth="79.0" text="Cantidad" />
-                  <TreeTableColumn prefWidth="91.0" text="Tiempo" />
+                  <TreeTableColumn fx:id="colNombre2" prefWidth="122.0" text="Nombre" />
+                  <TreeTableColumn fx:id="colCantidad2" prefWidth="79.0" text="Cantidad" />
+                  <TreeTableColumn fx:id="colTiempo2" prefWidth="91.0" text="Tiempo" />
                </columns>
             </TreeTableColumn>
          </columns>
       </TreeTableView>
-      <DatePicker editable="false" layoutX="350.0" layoutY="25.0" />
+      <DatePicker fx:id="dpFecha" editable="false" layoutX="350.0" layoutY="25.0" />
    </children>
 </AnchorPane>

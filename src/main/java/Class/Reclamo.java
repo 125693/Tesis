@@ -38,6 +38,9 @@ public class Reclamo {
     List<InfoFalla> productos = new ArrayList<>();
     String NombreProducto;
     String NombreFalla;
+    int cantidad;
+    int tiempo;
+    
     public Reclamo(){};
 
     public Reclamo(String NombreProducto, String NombreFalla) {
@@ -87,8 +90,8 @@ public class Reclamo {
                 
                 InfoFalla infoFalla = new InfoFalla();
                 
+                infoFalla.setCantidad(resultSet.getInt(" Cantidad")-resultSet.getInt("CantidadResueltos"));
                 infoFalla.setEstadoId(resultSet.getInt("estadoId"));
-                
                 sql2 = "SELECT * FROM falla where id = ?";
                 preparedStatement2 = con.prepareStatement(sql2);
                 preparedStatement2.setInt(1, resultSet.getInt("fallaId"));
@@ -185,6 +188,22 @@ public class Reclamo {
 
     public void setNombreFalla(String NombreFalla) {
         this.NombreFalla = NombreFalla;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
     }
     
     

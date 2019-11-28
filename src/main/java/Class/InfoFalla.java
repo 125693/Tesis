@@ -13,8 +13,17 @@ public class InfoFalla {
     String producto;
     Falla falla;
     int estadoId;
-
+    int cantidad;
+    
     public InfoFalla(){};
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
 
     public int getEstadoId() {
         return estadoId;

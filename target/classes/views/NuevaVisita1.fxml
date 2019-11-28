@@ -42,11 +42,11 @@
         <columns>
           <TableColumn fx:id="colId" prefWidth="81.0" text="DNI" />
           <TableColumn fx:id="colNombre" prefWidth="86.0" text="Nombre" />
+            <TableColumn fx:id="collApellidos" prefWidth="88.0" text="Apellidos" />
             <TableColumn fx:id="colTipo" prefWidth="64.0" text="Tipo" />
-            <TableColumn fx:id="colVisita" prefWidth="88.0" text="Plan Visita" />
-            <TableColumn fx:id="colHoras" prefWidth="153.0" text="Horas No Asignadas" />
+            <TableColumn fx:id="colTurno" prefWidth="153.0" text="Turno" />
         </columns>
       </TableView>
-      <DatePicker layoutX="310.0" layoutY="183.0" />
+      <DatePicker fx:id="dpFecha" layoutX="310.0" layoutY="183.0" />
    </children>
 </AnchorPane>
