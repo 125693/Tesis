@@ -29,7 +29,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="btnRegistrar11" layoutX="447.0" layoutY="552.0" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #717D7E;" text="FInalizar" textFill="WHITE" />
+      <Button fx:id="btnFinalizar" layoutX="447.0" layoutY="552.0" onAction="#btnFinalizarClick" prefHeight="35.0" prefWidth="84.0" style="-fx-background-color: #717D7E;" text="FInalizar" textFill="WHITE" />
       <Label layoutX="275.0" layoutY="569.0" text="Horas asignadas :" />
       <Label layoutX="375.0" layoutY="569.0" prefHeight="17.0" prefWidth="21.0" text="00" underline="true" />
       <TreeTableView fx:id="tblReclamos1" layoutX="61.0" layoutY="97.0" prefHeight="200.0" prefWidth="470.0">

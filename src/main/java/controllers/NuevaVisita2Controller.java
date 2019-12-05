@@ -16,6 +16,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,17 +70,25 @@ public class NuevaVisita2Controller implements Initializable {
     
     List<Reclamo> reclamos1 = new ArrayList<>();
     List<Reclamo> reclamos2 = new ArrayList<>();
+    List<Integer> asignarReclamos = new ArrayList<>();
     
+    Tecnico tecnico;
+    TreeItem<Reclamo> rootNode1;
+    TreeItem<Reclamo> rootNode2;
+    
+    
+            
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         con  = utils.ConnectionUtil.conDB();
-        FillTable1();
-        FillTable2();
     }    
 
     void setData(Tecnico t, LocalDate value) {
+        tecnico = t;
         dpFecha.setValue(value);
+        FillTable1();
+        FillTable2();
     }
 
     private void FillTable1() {
@@ -99,6 +108,7 @@ public class NuevaVisita2Controller implements Initializable {
             };
             
             TreeItem<Reclamo> rootNode = new TreeItem<>(reclamos1.get(0));
+            rootNode2 = new TreeItem<>(reclamos1.get(0));
             for (Reclamo r: reclamos1) {
                 TreeItem<Reclamo> node = new TreeItem<>(r);
                 rootNode.getChildren().add(node);
@@ -144,7 +154,39 @@ public class NuevaVisita2Controller implements Initializable {
     }
 
     private void FillTable2() {
-
+        try {
+            // TODO
+            int id = -1;
+            String sql = "SELECT * FROM planvisita where tecnicoId = ? and fecha = ?";
+            preparedStatement = con.prepareStatement(sql); 
+            preparedStatement.setInt(1, tecnico.getId());
+            preparedStatement.setDate(2, Date.valueOf(dpFecha.getValue()));
+            resultSet = preparedStatement.executeQuery();
+            
+            while(resultSet.next()){
+                id = resultSet.getInt("id");
+            };
+            
+            if (id == -1)
+            {
+                //no plan
+                System.out.println("no plan");
+            }
+            else
+            {
+                //plan data
+            }
+            tblReclamos2.setShowRoot(false);
+            tblReclamos2.setRoot(rootNode2);
+            
+            colId2.setCellValueFactory(new TreeItemPropertyValueFactory<>("id"));
+            colFecha2.setCellValueFactory(new TreeItemPropertyValueFactory<>("fecha"));
+            colNombre2.setCellValueFactory(new TreeItemPropertyValueFactory<>("NombreProducto"));
+            colCantidad2.setCellValueFactory(new TreeItemPropertyValueFactory<>("cantidad"));
+            colTiempo2.setCellValueFactory(new TreeItemPropertyValueFactory<>("tiempo"));
+        } catch (SQLException ex) {
+            Logger.getLogger(ListaClientesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @FXML
@@ -152,12 +194,79 @@ public class NuevaVisita2Controller implements Initializable {
         TreeItem<Reclamo> r = tblReclamos1.getSelectionModel().getSelectedItem();
         if(r == null || r.getParent().getParent() != null)
         {
-            
             JOptionPane.showMessageDialog(null,"Seleccionar un reclamo");
             return;
         }
+        TreeItem<Reclamo> node = new TreeItem<>(r.getValue());
+        asignarReclamos.add(r.getValue().getId());
+        for(int i = 0; i < r.getChildren().size(); i++)
+        {
+            node.getChildren().add(r.getChildren().get(i));
+        }
+        rootNode2.getChildren().add(node);
         r.getParent().getChildren().remove(r);
-        System.out.println("delete");
-
     }
+    
+    @FXML
+    private void btnFinalizarClick(ActionEvent event){
+        try
+        {
+            int PlanId = -1;
+            String sql = "SELECT * FROM planvisita where tecnicoId = ? and fecha = ?";
+            preparedStatement = con.prepareStatement(sql); 
+            preparedStatement.setInt(1, tecnico.getId());
+            preparedStatement.setDate(2, Date.valueOf(dpFecha.getValue()));
+            resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                PlanId = resultSet.getInt("id");
+            };
+
+            if (PlanId == -1)
+            {
+                sql = "INSERT INTO planvisita (tecnicoId, fecha) VALUES (?,?)";
+                preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                preparedStatement.setInt(1,tecnico.getId());
+                preparedStatement.setDate(2,Date.valueOf(dpFecha.getValue()));
+                preparedStatement.executeUpdate();
+
+                resultSet = preparedStatement.getGeneratedKeys();
+                while(resultSet.next())
+                {
+                    PlanId = resultSet.getInt(1);
+                }
+            }
+            
+            for(int i = 0; i < rootNode2.getChildren().size(); i++)
+            {
+                sql = "SELECT * FROM planvisita_has_reclamo where reclamoId = ? and planVisitaId = ?";
+                preparedStatement = con.prepareStatement(sql); 
+                preparedStatement.setInt(1, rootNode2.getChildren().get(i).getValue().getId());
+                preparedStatement.setInt(2, PlanId);
+                resultSet = preparedStatement.executeQuery();
+                
+                Boolean found = false;
+                while(resultSet.next()){
+                    found = true;
+                };
+                if(!found)
+                {
+                    sql = "INSERT INTO planvisita_has_reclamo (reclamoId, planVisitaId, estadoId) VALUES (?,?,1)";
+                    preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    preparedStatement.setInt(1,rootNode2.getChildren().get(i).getValue().getId());
+                    preparedStatement.setInt(2,PlanId);
+                    preparedStatement.executeUpdate();
+                    
+                    sql = "UPDATE reclamo SET estadoId = 2 WHERE  (`id` = '1')";
+                    preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    preparedStatement.setInt(1,rootNode2.getChildren().get(i).getValue().getId());
+                    preparedStatement.setInt(2,PlanId);
+                    preparedStatement.executeUpdate();
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ListaClientesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }
