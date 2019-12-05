@@ -29,6 +29,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
@@ -49,6 +50,9 @@ public class NuevaVisita2Controller implements Initializable {
     @FXML
     DatePicker dpFecha;
     
+    @FXML
+    Label lblHoras;
+    
     @FXML private TreeTableView<Reclamo> tblReclamos1;
     @FXML private TreeTableColumn<Reclamo, Integer> colId1;
     @FXML private TreeTableColumn<Reclamo, Date> colFecha1;
@@ -67,6 +71,8 @@ public class NuevaVisita2Controller implements Initializable {
     Connection con = null;
     PreparedStatement preparedStatement = null;
     ResultSet resultSet = null;
+    PreparedStatement preparedStatement2 = null;
+    ResultSet resultSet2 = null;
     
     List<Reclamo> reclamos1 = new ArrayList<>();
     List<Reclamo> reclamos2 = new ArrayList<>();
@@ -156,7 +162,7 @@ public class NuevaVisita2Controller implements Initializable {
     private void FillTable2() {
         try {
             // TODO
-            int id = -1;
+            int PlanId = -1;
             String sql = "SELECT * FROM planvisita where tecnicoId = ? and fecha = ?";
             preparedStatement = con.prepareStatement(sql); 
             preparedStatement.setInt(1, tecnico.getId());
@@ -164,18 +170,68 @@ public class NuevaVisita2Controller implements Initializable {
             resultSet = preparedStatement.executeQuery();
             
             while(resultSet.next()){
-                id = resultSet.getInt("id");
+                PlanId = resultSet.getInt("id");
             };
-            
-            if (id == -1)
+            if (PlanId != -1)
             {
-                //no plan
-                System.out.println("no plan");
+                sql = "SELECT * FROM planvisita_has_reclamo where planVisitaId = ?";
+                preparedStatement = con.prepareStatement(sql); 
+                preparedStatement.setInt(1, PlanId);
+                resultSet = preparedStatement.executeQuery();
+                while(resultSet.next()){
+                    
+                    String sql2 = "SELECT * FROM reclamo where id = ?";
+                    preparedStatement2 = con.prepareStatement(sql2);
+                    preparedStatement2.setInt(1, resultSet.getInt("reclamoId"));
+                    resultSet2 = preparedStatement2.executeQuery();
+
+                    while(resultSet2.next()){
+                        Reclamo reclamo = new Reclamo(resultSet2.getInt("id"), 
+                                resultSet2.getInt("clienteId"), 
+                                resultSet2.getInt("reclamoId"), 
+                                resultSet2.getInt("estadoId"), 
+                                resultSet2.getDate("fecha"));
+                        reclamos2.add(reclamo);
+                    };
+                };
             }
-            else
-            {
-                //plan data
+            int totalhoras = 0;
+            for (Reclamo r: reclamos2) {
+                TreeItem<Reclamo> node = new TreeItem<>(r);
+                rootNode2.getChildren().add(node);
+                
+                if (r.getProductos().size() == 1)
+                {
+                    r.setNombreProducto(r.getProductos().get(0).getProducto());
+                    r.setNombreFalla(r.getProductos().get(0).getFalla().getTipoFalla().getNombre());
+                    r.setCantidad(r.getProductos().get(0).getCantidad());
+                    r.setTiempo(r.getCantidad()*r.getProductos().get(0).getFalla().getTiempoResolucion());
+                    totalhoras  += r.getProductos().get(0).getFalla().getTiempoResolucion()*r.getCantidad();
+                }
+                else
+                {
+                    int CantidadTotal=0;
+                    int TimepoTotal=0;
+                    for (InfoFalla i: r.getProductos())
+                    {
+                        Reclamo rec = new Reclamo(r.getId(),r.getCliente().getId(),r.getReclamoId(),i.getEstadoId(),r.getFecha());
+                        rec.setNombreFalla(i.getFalla().getTipoFalla().getNombre());
+                        rec.setNombreProducto(i.getProducto());
+                        rec.setCantidad(i.getCantidad());
+                        rec.setTiempo(rec.getCantidad()*i.getFalla().getTiempoResolucion());
+                        TreeItem<Reclamo> node2 = new TreeItem<>(rec);
+                        node.getChildren().add(node2);
+                        CantidadTotal += i.getCantidad();
+                        TimepoTotal += rec.getTiempo();
+                    }
+                    r.setTiempo(TimepoTotal);
+                    r.setCantidad(CantidadTotal);
+                    totalhoras += TimepoTotal;
+                }
             }
+            System.out.println(totalhoras);
+            lblHoras.setText(Integer.toString(totalhoras));
+
             tblReclamos2.setShowRoot(false);
             tblReclamos2.setRoot(rootNode2);
             
@@ -199,6 +255,7 @@ public class NuevaVisita2Controller implements Initializable {
         }
         TreeItem<Reclamo> node = new TreeItem<>(r.getValue());
         asignarReclamos.add(r.getValue().getId());
+        lblHoras.setText(Integer.toString(Integer.valueOf(lblHoras.getText()) + r.getValue().getTiempo()));
         for(int i = 0; i < r.getChildren().size(); i++)
         {
             node.getChildren().add(r.getChildren().get(i));
@@ -257,13 +314,13 @@ public class NuevaVisita2Controller implements Initializable {
                     preparedStatement.setInt(2,PlanId);
                     preparedStatement.executeUpdate();
                     
-                    sql = "UPDATE reclamo SET estadoId = 2 WHERE  (`id` = '1')";
-                    preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                    sql = "UPDATE reclamo SET estadoId = 2 WHERE  (id = ?)";
+                    preparedStatement = con.prepareStatement(sql);
                     preparedStatement.setInt(1,rootNode2.getChildren().get(i).getValue().getId());
-                    preparedStatement.setInt(2,PlanId);
                     preparedStatement.executeUpdate();
                 }
             }
+            JOptionPane.showMessageDialog(null,"Visita Creada");
         } catch (SQLException ex) {
             Logger.getLogger(ListaClientesController.class.getName()).log(Level.SEVERE, null, ex);
         }
