@@ -28,12 +28,22 @@ public class Tecnico {
     TipoTurno tipoTurno;
     TipoTecnico tipoTecnico;
     Persona persona;
+    int especialidadId;
 
     public Tecnico(int id, int TipoTurnoId, int TipoTecnicoId, int PersonaId) {
         this.id = id;
         SetTipoTurno(TipoTurnoId);
         SetTipoTecnico(TipoTecnicoId);
         SetPersonaId(PersonaId);
+        SetEspecialidadId(id,TipoTecnicoId);
+    }
+
+    public int getEspecialidadId() {
+        return especialidadId;
+    }
+
+    public void setEspecialidadId(int especialidadId) {
+        this.especialidadId = especialidadId;
     }
     
     public int getId() {
@@ -116,6 +126,27 @@ public class Tecnico {
                         resultSet.getString("ApMaterno"),
                         resultSet.getString("Telefono"));
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(Tecnico.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void SetEspecialidadId(int id, int TipoTecnicoId) {
+        try {
+            if(TipoTecnicoId == 1)
+                this.especialidadId = -1;
+            else
+            {
+                String sql = "SELECT * FROM tecnico_has_especialidad where tecnicoId = ?";
+                preparedStatement = con.prepareStatement(sql);
+                preparedStatement.setInt(1, id);
+                resultSet = preparedStatement.executeQuery();
+
+                while(resultSet.next()){
+                    this.especialidadId = resultSet.getInt("especialidadId");
+                }
+            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(Tecnico.class.getName()).log(Level.SEVERE, null, ex);
         }

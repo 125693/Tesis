@@ -1,6 +1,7 @@
 Class\Reclamo.class
 controllers\RegistrarReclamo1Controller.class
 controllers\EditarVisitasController.class
+Class\PlanVisita.class
 controllers\ListaReclamosController.class
 Class\TipoTurno.class
 controllers\NuevaVisita2Controller.class

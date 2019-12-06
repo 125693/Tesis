@@ -6,6 +6,7 @@
 package controllers;
 
 import Class.InfoFalla;
+import Class.PlanVisita;
 import Class.Reclamo;
 import Class.Tecnico;
 import java.net.URL;
@@ -63,6 +64,8 @@ public class AlgoritmoController implements Initializable {
     
     List<Tecnico> tecnicos = new ArrayList<>();
     List<Reclamo> reclamos = new ArrayList<>();
+    List<PlanVisita> planesVisita = new ArrayList<>();
+    
     TreeItem<Reclamo> rootNode;
     @FXML
     DatePicker dpFechaInicio;
@@ -180,17 +183,40 @@ public class AlgoritmoController implements Initializable {
     @FXML
     private void btnPlanClick(ActionEvent event){
         //Algoritmo
-        long days = DAYS.between(dpFechaInicio.getValue(), dpFechaFin.getValue());
-        days++;
-        for (int i = 0; i < days; i++) {
-            System.out.println(dpFechaInicio.getValue().plusDays(i));
+        try
+        {
+            long days = DAYS.between(dpFechaInicio.getValue(), dpFechaFin.getValue());
+            days++;
+            for (int i = 0; i < days; i++) {
+                for (int j = 0; j < tblTecnicos.getItems().size() ; j++) {
+                    String sql = "SELECT * FROM planvisita where fecha = ? and tecnicoId = ?";
+                    preparedStatement = con.prepareStatement(sql);
+                    preparedStatement.setDate(1, Date.valueOf(dpFechaInicio.getValue().plusDays(i)));
+                    preparedStatement.setInt(2, tblTecnicos.getItems().get(j).getId());
+                    resultSet = preparedStatement.executeQuery();
+                    
+                    int PlanId = -1;
+                    while(resultSet.next()){
+                        PlanId = resultSet.getInt("id");
+                    };
+                    PlanVisita plan = new PlanVisita(PlanId, dpFechaInicio.getValue().plusDays(i), tblTecnicos.getItems().get(j));
+                    if(plan.getHoras() < 8)
+                        planesVisita.add(plan);
+                }
+            }
+
+            for (int i = 0; i < rootNode.getChildren().size(); i++) {
+                System.out.println(rootNode.getChildren().get(i).getValue().getId());
+            }
+            
+//            for (int i = 0; i < tblTecnicos.getItems().size() ; i++) {
+//                System.out.println(tblTecnicos.getItems().get(i).getId());
+//            }
+            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ListaClientesController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        for (int i = 0; i < tblTecnicos.getItems().size() ; i++) {
-            System.out.println(tblTecnicos.getItems().get(i).getId());
-        }
-        for (int i = 0; i < rootNode.getChildren().size(); i++) {
-            System.out.println(rootNode.getChildren().get(i).getValue().getId());
-        }
     }
 }
