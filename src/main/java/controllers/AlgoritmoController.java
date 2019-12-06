@@ -14,6 +14,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -23,6 +25,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -61,6 +64,10 @@ public class AlgoritmoController implements Initializable {
     List<Tecnico> tecnicos = new ArrayList<>();
     List<Reclamo> reclamos = new ArrayList<>();
     TreeItem<Reclamo> rootNode;
+    @FXML
+    DatePicker dpFechaInicio;
+    @FXML
+    DatePicker dpFechaFin;
     
     Connection con = null;
     PreparedStatement preparedStatement = null;
@@ -70,6 +77,8 @@ public class AlgoritmoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         con  = utils.ConnectionUtil.conDB();
+        dpFechaInicio.setValue(LocalDate.now());
+        dpFechaFin.setValue(LocalDate.now());
         FillTable();
         LoadTableData();
     }    
@@ -105,7 +114,7 @@ public class AlgoritmoController implements Initializable {
     private void LoadTableData() {
         try {
             // TODO
-            String sql = "SELECT * FROM reclamo where estadoId = 1";
+            String sql = "SELECT * FROM reclamo where estadoId = 1 order by fecha";
             preparedStatement = con.prepareStatement(sql); 
             resultSet = preparedStatement.executeQuery();
             
@@ -170,6 +179,13 @@ public class AlgoritmoController implements Initializable {
     }
     @FXML
     private void btnPlanClick(ActionEvent event){
+        //Algoritmo
+        long days = DAYS.between(dpFechaInicio.getValue(), dpFechaFin.getValue());
+        days++;
+        for (int i = 0; i < days; i++) {
+            System.out.println(dpFechaInicio.getValue().plusDays(i));
+        }
+        
         for (int i = 0; i < tblTecnicos.getItems().size() ; i++) {
             System.out.println(tblTecnicos.getItems().get(i).getId());
         }
