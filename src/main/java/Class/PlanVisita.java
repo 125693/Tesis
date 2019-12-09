@@ -33,6 +33,11 @@ public class PlanVisita {
     Tecnico tecnico;
     int horas = 0;
     List<Reclamo> reclamos = new ArrayList<>();
+    String nombre;
+    String distrito;
+    String horario;
+    
+    public PlanVisita(){};
     
     public PlanVisita(int id, LocalDate fecha, Tecnico tecnicoId) {
         this.id = id;
@@ -79,6 +84,30 @@ public class PlanVisita {
 
     public void setTecnico(Tecnico tecnico) {
         this.tecnico = tecnico;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(String distrito) {
+        this.distrito = distrito;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
 
 

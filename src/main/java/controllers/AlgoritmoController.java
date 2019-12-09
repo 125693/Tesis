@@ -133,6 +133,7 @@ public class AlgoritmoController implements Initializable {
                 reclamos.add(reclamo);
             };
             
+            if(reclamos.size() == 0) return;
             rootNode = new TreeItem<>(reclamos.get(0));
             for (Reclamo r: reclamos) {
                 TreeItem<Reclamo> node = new TreeItem<>(r);
@@ -378,8 +379,6 @@ public class AlgoritmoController implements Initializable {
     private int SelectCandidato(List<Integer> ListaCandidatos) {
         Random rand = null;
         int randomNum = (int) (Math.random()*ListaCandidatos.size()/5);
-        System.out.println(ListaCandidatos.size());
-        System.out.println(randomNum);
         return ListaCandidatos.get(randomNum);
     }
 }

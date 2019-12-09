@@ -112,7 +112,7 @@ public class NuevaVisita2Controller implements Initializable {
                         resultSet.getDate("fecha"));
                 reclamos1.add(reclamo);
             };
-            
+            if(reclamos1.size() == 0) return;
             TreeItem<Reclamo> rootNode = new TreeItem<>(reclamos1.get(0));
             rootNode2 = new TreeItem<>(reclamos1.get(0));
             for (Reclamo r: reclamos1) {
