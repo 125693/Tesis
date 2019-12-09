@@ -29,13 +29,23 @@ public class Tecnico {
     TipoTecnico tipoTecnico;
     Persona persona;
     int especialidadId;
+    int personaId;
 
     public Tecnico(int id, int TipoTurnoId, int TipoTecnicoId, int PersonaId) {
         this.id = id;
         SetTipoTurno(TipoTurnoId);
         SetTipoTecnico(TipoTecnicoId);
+        this.personaId=PersonaId;
         SetPersonaId(PersonaId);
         SetEspecialidadId(id,TipoTecnicoId);
+    }
+
+    public int getPersonaId() {
+        return personaId;
+    }
+
+    public void setPersonaId(int personaId) {
+        this.personaId = personaId;
     }
 
     public int getEspecialidadId() {

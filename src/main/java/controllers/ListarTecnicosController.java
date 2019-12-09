@@ -72,7 +72,7 @@ public class ListarTecnicosController implements Initializable {
                 
             };
             
-            colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+            colId.setCellValueFactory(new PropertyValueFactory<>("personaId"));
             colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getNombres()));
             collApellidos.setCellValueFactory(cellData -> new SimpleStringProperty(
                     cellData.getValue().getPersona().getApPaterno() + " " + cellData.getValue().getPersona().getApMaterno()));

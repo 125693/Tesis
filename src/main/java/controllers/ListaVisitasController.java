@@ -98,6 +98,7 @@ public class ListaVisitasController implements Initializable {
                     if (fin > p.getTecnico().getTipoTurno().getHoraFin())
                         fin = p.getTecnico().getTipoTurno().getHoraFin();
                     String horario = inicio + "-" + fin;
+                    inicio = fin;
                     plan.setHorario(horario);
                     plan.setId(r.getId());
                     plan.setFecha(r.getFecha().toLocalDate());

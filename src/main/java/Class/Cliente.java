@@ -118,5 +118,13 @@ public class Cliente {
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
+
+    public int getPersona_id() {
+        return Persona_id;
+    }
+
+    public void setPersona_id(int Persona_id) {
+        this.Persona_id = Persona_id;
+    }
     
 }

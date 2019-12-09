@@ -126,7 +126,7 @@ public class ListaClientesController implements Initializable {
                 
             };
             
-            colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+            colId.setCellValueFactory(new PropertyValueFactory<>("Persona_id"));
             colNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPersona().getNombres()));
             collApellidos.setCellValueFactory(cellData -> new SimpleStringProperty(
                     cellData.getValue().getPersona().getApPaterno() + " " + cellData.getValue().getPersona().getApMaterno()));
